@@ -26,12 +26,7 @@ router
       .prefix('auth')
       .as('auth')
 
-    router
-      .group(() => {
-        router.get('/profile', [controllers.Profile, 'show'])
-      })
-      .prefix('account')
-      .as('profile')
-      .use(middleware.auth())
+    router.resource('products', controllers.Products).apiOnly()
+    router.resource('raw-materials', controllers.RawMaterials).apiOnly()
   })
   .prefix('/api/v1')

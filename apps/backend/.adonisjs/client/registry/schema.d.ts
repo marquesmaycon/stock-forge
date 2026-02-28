@@ -40,15 +40,114 @@ export interface Registry {
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['destroy']>>>
     }
   }
-  'profile.profile.show': {
+  'products.index': {
     methods: ["GET","HEAD"]
-    pattern: '/api/v1/account/profile'
+    pattern: '/api/v1/products'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['show']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['index']>>>
+    }
+  }
+  'products.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/products'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/product').productValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/product').productValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['store']>>>
+    }
+  }
+  'products.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/products/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['show']>>>
+    }
+  }
+  'products.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/api/v1/products/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/product').productValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/product').productValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['update']>>>
+    }
+  }
+  'products.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/products/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['destroy']>>>
+    }
+  }
+  'raw_materials.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/raw-materials'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['index']>>>
+    }
+  }
+  'raw_materials.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/raw-materials'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['store']>>>
+    }
+  }
+  'raw_materials.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/raw-materials/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['show']>>>
+    }
+  }
+  'raw_materials.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/api/v1/raw-materials/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['update']>>>
+    }
+  }
+  'raw_materials.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/raw-materials/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['destroy']>>>
     }
   }
 }
