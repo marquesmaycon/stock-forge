@@ -1,0 +1,28 @@
+import env from '#start/env'
+import app from '@adonisjs/core/services/app'
+import { defineConfig } from '@adonisjs/lucid'
+
+const dbConfig = defineConfig({
+  /**
+   * Default connection used for all queries.
+   */
+  connection: 'pg',
+
+  connections: {
+    /**
+     * PostgreSQL connection.
+     * Install package to switch: npm install pg
+     */
+    pg: {
+      client: 'pg',
+      connection: env.get('DATABASE_URL'),
+      migrations: {
+        naturalSort: true,
+        paths: ['database/migrations'],
+      },
+      debug: app.inDev,
+    },
+  },
+})
+
+export default dbConfig
