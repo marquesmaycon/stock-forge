@@ -12,7 +12,7 @@ export const productValidator = vine.create(
       .array(
         vine.object({
           id: vine.string().uuid().exists({ table: 'raw_materials', column: 'id' }),
-          quantity_needed: vine.string(),
+          quantity_needed: vine.string().regex(/^\d+(\.\d{1,3})?$/),
         })
       )
       .minLength(1),

@@ -6,7 +6,7 @@ export default class ProductTransformer extends BaseTransformer<Product> {
   toObject() {
     return {
       ...this.pick(this.resource, ['id', 'name', 'price']),
-      rawMaterials: RawMaterialTransformer.transform(this.whenLoaded(this.resource.rawMaterials)),
+      rawMaterials: RawMaterialTransformer.transform(this.resource.rawMaterials),
     }
   }
 }
