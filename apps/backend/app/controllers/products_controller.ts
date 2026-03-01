@@ -8,10 +8,12 @@ export default class ProductsController {
   /**
    * Display a list of resource
    */
-  async index({ serialize }: HttpContext) {
+  async index({ serialize, response }: HttpContext) {
     const products = await Product.query().preload('rawMaterials')
 
-    return serialize(ProductTransformer.transform(products))
+    const data = await serialize(ProductTransformer.transform(products))
+
+    return response.ok(data)
   }
 
   /**
@@ -26,24 +28,28 @@ export default class ProductsController {
 
     await product.load('rawMaterials')
 
-    response.status(201)
+    const data = await serialize(ProductTransformer.transform(product))
 
-    return serialize(ProductTransformer.transform(product))
+    return response.created(data)
   }
 
   /**
    * Show individual record
    */
-  async show({ params, serialize }: HttpContext) {
+  async show({ params, serialize, response }: HttpContext) {
     const product = await Product.findOrFail(params.id)
 
-    return serialize(ProductTransformer.transform(product))
+    await product.load('rawMaterials')
+
+    const data = await serialize(ProductTransformer.transform(product))
+
+    return response.ok(data)
   }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, serialize }: HttpContext) {
+  async update({ params, request, serialize, response }: HttpContext) {
     const { rawMaterials, ...payload } = await request.validateUsing(productValidator)
 
     const product = await Product.findOrFail(params.id)
@@ -55,7 +61,9 @@ export default class ProductsController {
 
     await product.load('rawMaterials')
 
-    return serialize(ProductTransformer.transform(product))
+    const data = await serialize(ProductTransformer.transform(product))
+
+    return response.ok(data)
   }
 
   /**
