@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "@stock-forge/frontend",
   "private": true,
   "type": "module",
   "imports": {
