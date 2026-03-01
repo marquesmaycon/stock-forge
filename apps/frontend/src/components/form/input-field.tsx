@@ -11,7 +11,7 @@ type InputFieldProps = ComponentProps<typeof Input> & {
   label: string
 }
 
-export default function InputField({ label, mask, ...props }: InputFieldProps) {
+export function InputField({ label, mask, ...props }: InputFieldProps) {
   const field = useFieldContext<string>()
   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
 

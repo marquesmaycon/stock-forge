@@ -8,7 +8,7 @@ type SubmitButtonProps = ComponentProps<typeof Button> & {
   label: string
 }
 
-export default function SubmitButton({ label, ...props }: SubmitButtonProps) {
+export function SubmitButton({ label, ...props }: SubmitButtonProps) {
   const form = useFormContext()
 
   return (
