@@ -119,7 +119,8 @@
 
 @theme inline {
   --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  --color-background: var(--background);
+  --font-serif: 'Fraunces', Georgia, serif;
+  --color-background: var(--bg-base);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -156,26 +157,37 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --color-sea-ink: #173a40;
-  --color-sea-ink-soft: #416166;
-  --color-lagoon: #4fb8b2;
-  --color-lagoon-deep: #328f97;
-  --color-palm: #2f6a4a;
-  --color-sand: #e7f0e8;
-  --color-foam: #f3faf5;
-  --color-surface: rgba(255, 255, 255, 0.74);
-  --color-surface-strong: rgba(255, 255, 255, 0.9);
-  --color-line: rgba(23, 58, 64, 0.14);
-  --color-inset-glint: rgba(255, 255, 255, 0.82);
-  --color-kicker: rgba(47, 106, 74, 0.9);
-  --color-bg-base: #e7f3ec;
-  --color-header-bg: rgba(251, 255, 248, 0.84);
-  --color-chip-bg: rgba(255, 255, 255, 0.8);
-  --color-chip-line: rgba(47, 106, 74, 0.18);
-  --color-link-bg-hover: rgba(255, 255, 255, 0.9);
-  --color-hero-a: rgba(79, 184, 178, 0.36);
-  --color-hero-b: rgba(47, 106, 74, 0.2);
+  --color-sea-ink: var(--sea-ink);
+  --color-sea-ink-soft: var(--sea-ink-soft);
+  --color-lagoon: var(--lagoon);
+  --color-lagoon-deep: var(--lagoon-deep);
+  --color-palm: var(--palm);
+  --color-sand: var(--sand);
+  --color-foam: var(--foam);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-line: var(--line);
+  --color-inset-glint: var(--inset-glint);
+  --color-kicker: var(--kicker);
+  --color-bg-base: var(--bg-base);
+  --color-header-bg: var(--header-bg);
+  --color-chip-bg: var(--chip-bg);
+  --color-chip-line: var(--chip-line);
+  --color-link-bg-hover: var(--link-bg-hover);
+  --color-hero-a: var(--hero-a);
+  --color-hero-b: var(--hero-b);
 }
+
+@layer base {
+  main {
+    @apply container mx-auto pt-14
+  }
+
+  .page-title {
+    @apply font-serif mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-sea-ink sm:text-6xl
+  }
+}
+
 
 html,
 body,
@@ -225,6 +237,8 @@ body::after {
   mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
 }
 
+main {}
+
 a {
   color: var(--lagoon-deep);
   text-decoration-color: rgba(50, 143, 151, 0.4);
@@ -258,15 +272,6 @@ pre code {
   border-radius: 12px;
   background: #1d2e45;
   color: #e8efff;
-}
-
-.page-wrap {
-  width: min(1080px, calc(100% - 2rem));
-  margin-inline: auto;
-}
-
-.display-title {
-  font-family: 'Fraunces', Georgia, serif;
 }
 
 .island-shell {
