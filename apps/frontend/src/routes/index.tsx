@@ -1,3 +1,9 @@
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemTitle,
+} from '#/components/ui/item'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
@@ -8,14 +14,12 @@ function App() {
       <section className="island-shell rise-in relative overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14">
         <div className="pointer-events-none absolute -left-20 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.32),transparent_66%)]" />
         <div className="pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(47,106,74,0.18),transparent_66%)]" />
-        <p className="island-kicker mb-3">TanStack Start Base Template</p>
+        <p className="island-kicker mb-3">AdonisJS 7 and TanStack Start</p>
         <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-(--sea-ink) sm:text-6xl">
-          Island hours, but for product teams.
+          Stock Forge
         </h1>
         <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
-          A tropical, breathable app starter with full-document SSR, server
-          functions, streaming, and type-safe routing. Calm on the eyes. Fast in
-          production.
+          A product inventory management app built with Turbo Repo
         </p>
         <div className="flex flex-wrap gap-3">
           <a
@@ -65,6 +69,123 @@ function App() {
             <p className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</p>
           </article>
         ))}
+      </section>
+
+      <section className="my-10 space-y-4 grid lg:grid-cols-3" id="colors">
+        <Item variant="outline" className="bg-sea-ink">
+          <ItemContent>
+            <ItemTitle className="text-foreground">Sea Ink</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-sea-ink-soft">
+          <ItemContent>
+            <ItemTitle>Sea Ink Soft</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-lagoon">
+          <ItemContent>
+            <ItemTitle>Lagoon</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-lagoon-deep">
+          <ItemContent>
+            <ItemTitle>Lagoon Deep</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-palm">
+          <ItemContent>
+            <ItemTitle>Palm</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-sand">
+          <ItemContent>
+            <ItemTitle>Sand</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-foam">
+          <ItemContent>
+            <ItemTitle>Foam</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-surface">
+          <ItemContent>
+            <ItemTitle>Surface</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-surface-strong">
+          <ItemContent>
+            <ItemTitle>Surface Strong</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-line">
+          <ItemContent>
+            <ItemTitle>Line</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="inset-glint">
+          <ItemContent>
+            <ItemTitle>inset-glint</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-kicker">
+          <ItemContent>
+            <ItemTitle>Kicker</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-bg-base">
+          <ItemContent>
+            <ItemTitle>Background Base</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-header-bg">
+          <ItemContent>
+            <ItemTitle>Header Background</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-chip-bg">
+          <ItemContent>
+            <ItemTitle>Chip Background</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-chip-line">
+          <ItemContent>
+            <ItemTitle>Chip Line</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-link-bg-hover">
+          <ItemContent>
+            <ItemTitle>Link Background Hover</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-hero-a">
+          <ItemContent>
+            <ItemTitle>Hero A</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="bg-hero-b">
+          <ItemContent>
+            <ItemTitle>Hero B</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
       </section>
 
       <section className="island-shell mt-8 rounded-2xl p-6">
