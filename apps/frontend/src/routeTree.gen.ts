@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RawMaterialsIndexRouteImport } from './routes/raw-materials/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as RawMaterialsNewRouteImport } from './routes/raw-materials/_.new'
+import { Route as RawMaterialsIdRouteImport } from './routes/raw-materials/_.$id'
 import { Route as ProductsNewRouteImport } from './routes/products/_.new'
 import { Route as ProductsIdRouteImport } from './routes/products/_.$id'
 
@@ -28,6 +30,16 @@ const RawMaterialsIndexRoute = RawMaterialsIndexRouteImport.update({
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RawMaterialsNewRoute = RawMaterialsNewRouteImport.update({
+  id: '/raw-materials/_/new',
+  path: '/raw-materials/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RawMaterialsIdRoute = RawMaterialsIdRouteImport.update({
+  id: '/raw-materials/_/$id',
+  path: '/raw-materials/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsNewRoute = ProductsNewRouteImport.update({
@@ -47,6 +59,8 @@ export interface FileRoutesByFullPath {
   '/raw-materials/': typeof RawMaterialsIndexRoute
   '/products/$id': typeof ProductsIdRoute
   '/products/new': typeof ProductsNewRoute
+  '/raw-materials/$id': typeof RawMaterialsIdRoute
+  '/raw-materials/new': typeof RawMaterialsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByTo {
   '/raw-materials': typeof RawMaterialsIndexRoute
   '/products/$id': typeof ProductsIdRoute
   '/products/new': typeof ProductsNewRoute
+  '/raw-materials/$id': typeof RawMaterialsIdRoute
+  '/raw-materials/new': typeof RawMaterialsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +78,8 @@ export interface FileRoutesById {
   '/raw-materials/': typeof RawMaterialsIndexRoute
   '/products/_/$id': typeof ProductsIdRoute
   '/products/_/new': typeof ProductsNewRoute
+  '/raw-materials/_/$id': typeof RawMaterialsIdRoute
+  '/raw-materials/_/new': typeof RawMaterialsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,8 +89,17 @@ export interface FileRouteTypes {
     | '/raw-materials/'
     | '/products/$id'
     | '/products/new'
+    | '/raw-materials/$id'
+    | '/raw-materials/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products' | '/raw-materials' | '/products/$id' | '/products/new'
+  to:
+    | '/'
+    | '/products'
+    | '/raw-materials'
+    | '/products/$id'
+    | '/products/new'
+    | '/raw-materials/$id'
+    | '/raw-materials/new'
   id:
     | '__root__'
     | '/'
@@ -80,6 +107,8 @@ export interface FileRouteTypes {
     | '/raw-materials/'
     | '/products/_/$id'
     | '/products/_/new'
+    | '/raw-materials/_/$id'
+    | '/raw-materials/_/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -88,6 +117,8 @@ export interface RootRouteChildren {
   RawMaterialsIndexRoute: typeof RawMaterialsIndexRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ProductsNewRoute: typeof ProductsNewRoute
+  RawMaterialsIdRoute: typeof RawMaterialsIdRoute
+  RawMaterialsNewRoute: typeof RawMaterialsNewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -113,6 +144,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/raw-materials/_/new': {
+      id: '/raw-materials/_/new'
+      path: '/raw-materials/new'
+      fullPath: '/raw-materials/new'
+      preLoaderRoute: typeof RawMaterialsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/raw-materials/_/$id': {
+      id: '/raw-materials/_/$id'
+      path: '/raw-materials/$id'
+      fullPath: '/raw-materials/$id'
+      preLoaderRoute: typeof RawMaterialsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/_/new': {
       id: '/products/_/new'
       path: '/products/new'
@@ -136,6 +181,8 @@ const rootRouteChildren: RootRouteChildren = {
   RawMaterialsIndexRoute: RawMaterialsIndexRoute,
   ProductsIdRoute: ProductsIdRoute,
   ProductsNewRoute: ProductsNewRoute,
+  RawMaterialsIdRoute: RawMaterialsIdRoute,
+  RawMaterialsNewRoute: RawMaterialsNewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
