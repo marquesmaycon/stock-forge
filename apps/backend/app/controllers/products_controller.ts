@@ -41,9 +41,9 @@ export default class ProductsController {
 
     await product.load('rawMaterials')
 
-    const { data: productData } = await serialize(ProductTransformer.transform(product))
+    const { data } = await serialize(ProductTransformer.transform(product))
 
-    return response.ok(productData)
+    return response.ok(data)
   }
 
   /**

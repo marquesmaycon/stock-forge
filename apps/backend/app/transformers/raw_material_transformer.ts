@@ -7,7 +7,8 @@ export default class RawMaterialTransformer extends BaseTransformer<RawMaterial>
     return {
       ...this.pick(this.resource, ['id', 'name', 'quantity']),
       quantity_needed: this.resource.$extras.pivot_quantity_needed as string,
-      product: ProductTransformer.transform(this.resource.products),
+      productsUsing: this.resource.$extras.products_count as number,
+      products: ProductTransformer.transform(this.whenLoaded(this.resource.products)),
     }
   }
 }
