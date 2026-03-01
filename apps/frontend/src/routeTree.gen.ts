@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as RawMaterialsRouteImport } from './routes/raw-materials'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as AboutRouteImport } from './routes/about'
@@ -18,11 +17,6 @@ import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-qu
 import { Route as DemoFormSimpleRouteImport } from './routes/demo/form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
 
-const RssDotxmlRoute = RssDotxmlRouteImport.update({
-  id: '/rss.xml',
-  path: '/rss.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RawMaterialsRoute = RawMaterialsRouteImport.update({
   id: '/raw-materials',
   path: '/raw-materials',
@@ -64,7 +58,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/products': typeof ProductsRoute
   '/raw-materials': typeof RawMaterialsRoute
-  '/rss.xml': typeof RssDotxmlRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -74,7 +67,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/products': typeof ProductsRoute
   '/raw-materials': typeof RawMaterialsRoute
-  '/rss.xml': typeof RssDotxmlRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -85,7 +77,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/products': typeof ProductsRoute
   '/raw-materials': typeof RawMaterialsRoute
-  '/rss.xml': typeof RssDotxmlRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -97,7 +88,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/products'
     | '/raw-materials'
-    | '/rss.xml'
     | '/demo/tanstack-query'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -107,7 +97,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/products'
     | '/raw-materials'
-    | '/rss.xml'
     | '/demo/tanstack-query'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -117,7 +106,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/products'
     | '/raw-materials'
-    | '/rss.xml'
     | '/demo/tanstack-query'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -128,7 +116,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ProductsRoute: typeof ProductsRoute
   RawMaterialsRoute: typeof RawMaterialsRoute
-  RssDotxmlRoute: typeof RssDotxmlRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
   DemoFormSimpleRoute: typeof DemoFormSimpleRoute
@@ -136,13 +123,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/rss.xml': {
-      id: '/rss.xml'
-      path: '/rss.xml'
-      fullPath: '/rss.xml'
-      preLoaderRoute: typeof RssDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/raw-materials': {
       id: '/raw-materials'
       path: '/raw-materials'
@@ -200,7 +180,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ProductsRoute: ProductsRoute,
   RawMaterialsRoute: RawMaterialsRoute,
-  RssDotxmlRoute: RssDotxmlRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,
   DemoFormSimpleRoute: DemoFormSimpleRoute,
