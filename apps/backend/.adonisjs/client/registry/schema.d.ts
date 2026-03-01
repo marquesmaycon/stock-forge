@@ -110,10 +110,10 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/v1/raw-materials'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/raw_material').rawMaterialValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/raw_material').rawMaterialValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['store']>>>
     }
   }
@@ -132,10 +132,10 @@ export interface Registry {
     methods: ["PUT","PATCH"]
     pattern: '/api/v1/raw-materials/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/raw_material').rawMaterialValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/raw_material').rawMaterialValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['update']>>>
     }
   }

@@ -5,7 +5,7 @@ import { manyToMany } from '@adonisjs/lucid/orm'
 
 export default class RawMaterial extends RawMaterialSchema {
   @manyToMany(() => Product, {
-    pivotTable: 'product_raw_material',
+    pivotTable: 'product_raw_materials',
     pivotColumns: ['quantity_needed'],
   })
   declare products: ManyToMany<typeof Product>
