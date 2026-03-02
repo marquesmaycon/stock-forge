@@ -1,8 +1,126 @@
+import { Item, ItemContent, ItemDescription, ItemTitle } from '#/components/ui/item'
+
 export function Footer() {
   const year = new Date().getFullYear()
 
   return (
     <footer className="border-t border-line px-4 pb-14 pt-10 text-sea-ink-soft">
+      <section className="my-10 gap-6 grid lg:grid-cols-3" id="colors">
+        <Item variant="outline" className="rise-in bg-sea-ink">
+          <ItemContent>
+            <ItemTitle className="text-foreground">Sea Ink</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-sea-ink-soft">
+          <ItemContent>
+            <ItemTitle>Sea Ink Soft</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-lagoon">
+          <ItemContent>
+            <ItemTitle>Lagoon</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-lagoon-deep">
+          <ItemContent>
+            <ItemTitle>Lagoon Deep</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-palm">
+          <ItemContent>
+            <ItemTitle>Palm</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-sand">
+          <ItemContent>
+            <ItemTitle>Sand</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-foam">
+          <ItemContent>
+            <ItemTitle>Foam</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-surface">
+          <ItemContent>
+            <ItemTitle>Surface</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-surface-strong">
+          <ItemContent>
+            <ItemTitle>Surface Strong</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-line">
+          <ItemContent>
+            <ItemTitle>Line</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="inset-glint">
+          <ItemContent>
+            <ItemTitle>inset-glint</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-kicker">
+          <ItemContent>
+            <ItemTitle>Kicker</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-bg-base">
+          <ItemContent>
+            <ItemTitle>Background Base</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-header-bg">
+          <ItemContent>
+            <ItemTitle>Header Background</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-chip-bg">
+          <ItemContent>
+            <ItemTitle>Chip Background</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-chip-line">
+          <ItemContent>
+            <ItemTitle>Chip Line</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-link-bg-hover">
+          <ItemContent>
+            <ItemTitle>Link Background Hover</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-hero-a">
+          <ItemContent>
+            <ItemTitle>Hero A</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+        <Item variant="outline" className="rise-in bg-hero-b">
+          <ItemContent>
+            <ItemTitle>Hero B</ItemTitle>
+            <ItemDescription>Example product description</ItemDescription>
+          </ItemContent>
+        </Item>
+      </section>
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
         <p className="m-0 text-sm">&copy; {year} Maycon Silva. All rights reserved.</p>
         <p className="island-kicker m-0">Built with TanStack Start</p>

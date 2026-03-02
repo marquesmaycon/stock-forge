@@ -1,8 +1,9 @@
 import { SendHorizonal } from 'lucide-react'
 import type { ComponentProps } from 'react'
 
-import { Button } from '../ui/button'
 import { useFormContext } from '#/hooks/form-context'
+
+import { Button } from '../ui/button'
 
 type SubmitButtonProps = ComponentProps<typeof Button> & {
   label: string
@@ -14,12 +15,7 @@ export function SubmitButton({ label, ...props }: SubmitButtonProps) {
   return (
     <form.Subscribe selector={(state) => [state.isDirty, state.isSubmitting]}>
       {([isDirty, isSubmitting]) => (
-        <Button
-          type="submit"
-          disabled={!isDirty}
-          {...props}
-          loading={isSubmitting || props.loading}
-        >
+        <Button type="submit" disabled={!isDirty} {...props} loading={isSubmitting || props.loading} variant="default">
           {label || 'Enviar'} <SendHorizonal />
         </Button>
       )}
