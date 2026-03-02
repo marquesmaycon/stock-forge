@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Plus } from 'lucide-react'
 
+import { PageTitle } from '#/components/page-title'
 import { Avatar, AvatarFallback } from '#/components/ui/avatar'
 import { Button } from '#/components/ui/button'
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '#/components/ui/item'
@@ -16,19 +17,18 @@ function RouteComponent() {
 
   return (
     <main>
-      <div className="mb-10 flex justify-between items-center">
-        <div className="">
-          <h1 className="page-title">Raw Materials</h1>
-          <p className="mb-8 max-w-2xl text-base text-sea-ink-soft sm:text-lg">
-            A product is an item that is manufactured or refined using raw materials.
-          </p>
-        </div>
+      <PageTitle.Root>
+        <PageTitle.Background first="from-lagoon/50" second="from-palm/25" />
+        <PageTitle.Title
+          title="Raw Materials"
+          description="A product is an item that is manufactured or refined using raw materials."
+        />
         <Link to="/raw-materials/new">
-          <Button>
+          <Button size="lg">
             New Raw Material <Plus />
           </Button>
         </Link>
-      </div>
+      </PageTitle.Root>
 
       <section>
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

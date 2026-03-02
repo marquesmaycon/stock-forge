@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { PageTitle } from '#/components/page-title'
 import { ProductForm } from '#/features/product/product-form'
 
 export const Route = createFileRoute('/products/_/new')({
@@ -9,7 +10,10 @@ export const Route = createFileRoute('/products/_/new')({
 function RouteComponent() {
   return (
     <main>
-      <h1 className="page-title">New Product</h1>
+      <PageTitle.Root>
+        <PageTitle.Title title="New Product" description="Create a new product by filling out the form below." />
+        <PageTitle.BackButton to="/products" />
+      </PageTitle.Root>
       <ProductForm />
     </main>
   )
