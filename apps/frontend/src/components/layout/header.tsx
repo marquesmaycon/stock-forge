@@ -5,7 +5,7 @@ import ThemeToggle from '../ThemeToggle'
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-header-bg px-4 backdrop-blur-lg">
-      <nav className="container mx-auto flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4 justify-between">
+      <nav className="container mx-auto flex  items-center gap-x-3 gap-y-2 py-3 sm:py-4 justify-between">
         {/* <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
           <Link
             to="/"
@@ -16,7 +16,7 @@ export function Header() {
           </Link>
         </h2> */}
 
-        <div className="flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:w-auto sm:flex-nowrap sm:pb-0">
+        <div className="flex flex-wrap items-center gap-4 pb-1 text-sm font-semibold sm:w-auto sm:flex-nowrap sm:pb-0">
           <Link to="/" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
             Home
           </Link>
@@ -26,35 +26,9 @@ export function Header() {
           <Link to="/raw-materials" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
             Raw Materials
           </Link>
-
-          {/* <details className="relative w-full sm:w-auto">
-            <summary className="nav-link list-none cursor-pointer">
-              Demos
-            </summary>
-            <div className="mt-2 min-w-56 rounded-xl border border-[var(--line)] bg-[var(--header-bg)] p-2 shadow-lg sm:absolute sm:right-0">
-              <a
-                href="/demo/form/simple"
-                className="block rounded-lg px-3 py-2 text-sm text-[var(--sea-ink-soft)] no-underline transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-              >
-                Simple Form
-              </a>
-              <a
-                href="/demo/form/address"
-                className="block rounded-lg px-3 py-2 text-sm text-[var(--sea-ink-soft)] no-underline transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-              >
-                Address Form
-              </a>
-              <a
-                href="/demo/tanstack-query"
-                className="block rounded-lg px-3 py-2 text-sm text-[var(--sea-ink-soft)] no-underline transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-              >
-                TanStack Query
-              </a>
-            </div>
-          </details> */}
         </div>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:ml-0 sm:gap-2">
+        <div className="ml-auto flex items-center gap-1.5 sm:ml-0 sm:gap-2 shrink-0">
           <ThemeToggle />
         </div>
       </nav>

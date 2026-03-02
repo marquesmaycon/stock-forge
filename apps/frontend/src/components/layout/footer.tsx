@@ -2,35 +2,48 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-20 border-t border-line px-4 pb-14 pt-10 text-sea-ink-soft">
+    <footer className="border-t border-line px-4 pb-14 pt-10 text-sea-ink-soft">
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-        <p className="m-0 text-sm">
-          &copy; {year} Your name here. All rights reserved.
-        </p>
+        <p className="m-0 text-sm">&copy; {year} Maycon Silva. All rights reserved.</p>
         <p className="island-kicker m-0">Built with TanStack Start</p>
       </div>
       <div className="mt-4 flex justify-center gap-4">
         <a
-          href="https://x.com/tan_stack"
+          href="https://www.linkedin.com/in/mayconhenrique/"
           target="_blank"
           rel="noreferrer"
           className="rounded-xl p-2 text-sea-ink-soft transition hover:bg-link-bg-hover hover:text-sea-ink"
         >
-          <span className="sr-only">Follow TanStack on X</span>
-          <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
+          <span className="sr-only">Follow Maycon Silva on LinkedIn</span>
+
+          <svg viewBox="0 0 24 24" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
             <path
+              d="M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z"
               fill="currentColor"
-              d="M12.6 1h2.2L10 6.48 15.64 15h-4.41L7.78 9.82 3.23 15H1l5.14-5.84L.72 1h4.52l3.12 4.73L12.6 1zm-.77 12.67h1.22L4.57 2.26H3.26l8.57 11.41z"
+            />
+            <path
+              d="M5 10C5 9.44772 5.44772 9 6 9H7C7.55228 9 8 9.44771 8 10V18C8 18.5523 7.55228 19 7 19H6C5.44772 19 5 18.5523 5 18V10Z"
+              fill="currentColor"
+            />
+            <path
+              d="M11 19H12C12.5523 19 13 18.5523 13 18V13.5C13 12 16 11 16 13V18.0004C16 18.5527 16.4477 19 17 19H18C18.5523 19 19 18.5523 19 18V12C19 10 17.5 9 15.5 9C13.5 9 13 10.5 13 10.5V10C13 9.44771 12.5523 9 12 9H11C10.4477 9 10 9.44772 10 10V18C10 18.5523 10.4477 19 11 19Z"
+              fill="currentColor"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
+              fill="currentColor"
             />
           </svg>
         </a>
         <a
-          href="https://github.com/TanStack"
+          href="https://github.com/marquesmaycon"
           target="_blank"
           rel="noreferrer"
           className="rounded-xl p-2 text-sea-ink-soft transition hover:bg-link-bg-hover hover:text-sea-ink"
         >
-          <span className="sr-only">Go to TanStack GitHub</span>
+          <span className="sr-only">Go to Maycon Silva's GitHub</span>
           <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
             <path
               fill="currentColor"
