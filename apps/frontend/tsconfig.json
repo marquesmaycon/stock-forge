@@ -8,7 +8,9 @@
     "baseUrl": ".",
     "paths": {
       "#/*": ["./src/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@stock-forge/api-contract": ["../../packages/api-contract/src"],
+      "@stock-forge/api-contract/*": ["../../packages/api-contract/src/*"],
     },
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["vite/client"],
