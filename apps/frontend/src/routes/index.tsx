@@ -38,28 +38,13 @@ function App() {
         </div>
       </PageTitle.Root>
 
-      <section>
+      <section className="rise-in">
         <h2 className="page-title mb-12 w-full max-w-none text-center font-serif">Forge Products</h2>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {products?.map((p, index) => (
             <ForgeCard product={p} animationDelay={index * 90 + 80} />
           ))}
-        </ul>
-      </section>
-
-      <section className="island-shell mt-8 rounded-2xl p-6">
-        <p className="island-kicker mb-2">Quick Start</p>
-        <ul className="text-sea-ink-soft m-0 list-disc space-y-2 pl-5 text-sm">
-          <li>
-            Edit <code>src/routes/index.tsx</code> to customize the hero and product narrative.
-          </li>
-          <li>
-            Update <code>src/components/Header.tsx</code> and <code>src/components/Footer.tsx</code> for brand links.
-          </li>
-          <li>
-            Add routes in <code>src/routes</code> and tweak visual tokens in <code>src/styles.css</code>.
-          </li>
         </ul>
       </section>
     </main>

@@ -1,11 +1,11 @@
-import { Item, ItemContent, ItemDescription, ItemTitle } from '#/components/ui/item'
+// import { Item, ItemContent, ItemDescription, ItemTitle } from '#/components/ui/item'
 
 export function Footer() {
   const year = new Date().getFullYear()
 
   return (
     <footer className="border-line text-sea-ink-soft border-t px-4 pt-10 pb-14">
-      <section className="my-10 grid gap-6 lg:grid-cols-3" id="colors">
+      {/* <section className="my-10 grid gap-6 lg:grid-cols-3" id="colors">
         <Item variant="outline" className="rise-in bg-sea-ink border-none">
           <ItemContent>
             <ItemTitle className="text-foreground">Sea Ink</ItemTitle>
@@ -120,7 +120,7 @@ export function Footer() {
             <ItemDescription>Example product description</ItemDescription>
           </ItemContent>
         </Item>
-      </section>
+      </section> */}
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
         <p className="m-0 text-sm">&copy; {year} Maycon Silva. All rights reserved.</p>
         <p className="island-kicker m-0">Built with TanStack Start</p>
