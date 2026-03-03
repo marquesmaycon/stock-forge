@@ -11,7 +11,11 @@ function RouteComponent() {
   return (
     <main>
       <PageTitle.Root>
-        <PageTitle.Title title="New Product" description="Create a new product by filling out the form below." />
+        <PageTitle.Title
+          title="New Product"
+          description="Create a new product by filling out the form below."
+          eyebrow="Product"
+        />
         <PageTitle.BackButton to="/products" />
       </PageTitle.Root>
       <ProductForm />

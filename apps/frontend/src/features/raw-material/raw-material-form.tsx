@@ -33,7 +33,7 @@ export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
         e.preventDefault()
         form.handleSubmit()
       }}
-      className="bg-background space-y-4 rounded-lg border px-4 py-6"
+      className="bg-background rise-in space-y-4 rounded-lg border px-4 py-6"
     >
       <FieldGroup>
         <form.AppField name="name">
@@ -44,7 +44,7 @@ export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
         </form.AppField>
 
         <form.AppForm>
-          <form.SubmitButton label={rawMaterial ? 'Atualizar' : 'Criar'} className="ml-auto" />
+          <form.SubmitButton label={rawMaterial ? 'Update' : 'Create'} className="ml-auto" />
         </form.AppForm>
       </FieldGroup>
     </form>

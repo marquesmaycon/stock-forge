@@ -16,7 +16,7 @@ export function SubmitButton({ label, ...props }: SubmitButtonProps) {
     <form.Subscribe selector={(state) => [state.isDirty, state.isSubmitting]}>
       {([isDirty, isSubmitting]) => (
         <Button type="submit" disabled={!isDirty} {...props} loading={isSubmitting || props.loading} variant="default">
-          {label || 'Enviar'} <SendHorizonal />
+          {label || 'Save'} <SendHorizonal />
         </Button>
       )}
     </form.Subscribe>

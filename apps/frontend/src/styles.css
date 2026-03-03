@@ -203,7 +203,7 @@
   }
 
   main {
-    @apply container mx-auto pt-14 px-4 pb-8 flex-1;
+    @apply container mx-auto  pt-14 px-4 pb-8 flex-1;
   }
 
   .page-title {

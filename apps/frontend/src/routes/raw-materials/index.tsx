@@ -21,7 +21,7 @@ function RouteComponent() {
         <PageTitle.Background first="from-lagoon/50" second="from-palm/25" />
         <PageTitle.Title
           title="Raw Materials"
-          description="A product is an item that is manufactured or refined using raw materials."
+          description="Manage your raw materials here. You can add new materials, edit existing ones, and keep track of their usage in your products."
         />
         <Link to="/raw-materials/new">
           <Button size="lg">
@@ -31,10 +31,16 @@ function RouteComponent() {
       </PageTitle.Root>
 
       <section>
-        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {rawMaterials?.map((material) => (
+        <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {rawMaterials?.map((material, i) => (
             <li key={material.id}>
-              <Item variant="outline" asChild role="listitem" className="bg-lagoon/50 dark:bg-palm/20">
+              <Item
+                variant="outline"
+                asChild
+                role="listitem"
+                className="bg-palm/50 dark:bg-surface rise-in"
+                style={{ animationDelay: `${i * 90 + 80}ms` }}
+              >
                 <Link to="/raw-materials/$id" params={{ id: material.id }}>
                   <ItemMedia>
                     <Avatar className="">

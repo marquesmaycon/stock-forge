@@ -5,12 +5,13 @@ import type { ClassNameValue } from 'tailwind-merge'
 import { cn } from '#/lib/utils'
 
 import { Button } from './ui/button'
+import { Skeleton as SkeletonUI } from './ui/skeleton'
 
 function Root({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <section
       className={cn(
-        'mb-10 flex rise-in flex-col lg:flex-row justify-between items-center island-shell rise-in relative overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14',
+        'island-shell rise-in relative mb-10 flex min-h-64 flex-col items-center justify-between overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14 lg:flex-row',
         className,
       )}
       {...props}
@@ -30,13 +31,13 @@ function Background({ first, second }: PageHeaderBgProps) {
     <>
       <div
         className={cn(
-          'pointer-events-none absolute -left-20 -top-24 h-56 w-56 rounded-full bg-radial from-hero-a to-transparent to-66%',
+          'from-hero-a pointer-events-none absolute -top-24 -left-20 h-56 w-56 rounded-full bg-radial to-transparent to-66%',
           first,
         )}
       />
       <div
         className={cn(
-          'pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-radial from-hero-b to-transparent to-66%',
+          'from-hero-b pointer-events-none absolute -right-20 -bottom-20 h-56 w-56 rounded-full bg-radial to-transparent to-66%',
           second,
         )}
       />
@@ -47,7 +48,7 @@ function Background({ first, second }: PageHeaderBgProps) {
 type PageHeaderProps = {
   eyebrow?: string
   title: string
-  description: string
+  description?: string
 }
 
 function Title({ eyebrow, title, description }: PageHeaderProps) {
@@ -55,7 +56,7 @@ function Title({ eyebrow, title, description }: PageHeaderProps) {
     <div>
       <p className="island-kicker mb-3">{eyebrow}</p>
       <h1 className="page-title">{title}</h1>
-      <p className="mb-8 max-w-2xl text-base text-sea-ink-soft sm:text-lg">{description}</p>
+      <p className="text-sea-ink-soft mb-8 max-w-2xl text-base sm:text-lg">{description}</p>
     </div>
   )
 }
@@ -76,9 +77,16 @@ function BackButton({ to, label = 'Back' }: BackButtonProps) {
   )
 }
 
+function Skeleton() {
+  return (
+    <SkeletonUI className="island-shell relative mb-10 flex h-72 w-full flex-col items-center justify-between overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14 lg:flex-row" />
+  )
+}
+
 export const PageTitle = {
   Root,
   Background,
   Title,
   BackButton,
+  Skeleton,
 }

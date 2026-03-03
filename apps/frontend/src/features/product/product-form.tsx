@@ -1,7 +1,7 @@
 import { formOptions } from '@tanstack/react-form'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import type { Route } from '@tuyau/core/types'
-import { Plus } from 'lucide-react'
+import { Plus, Trash } from 'lucide-react'
 
 import { Button } from '#/components/ui/button'
 import { FieldGroup } from '#/components/ui/field'
@@ -53,7 +53,7 @@ export function ProductForm({ product }: ProductFormProps) {
         e.preventDefault()
         form.handleSubmit()
       }}
-      className="bg-background space-y-4 rounded-lg border px-4 py-6"
+      className="bg-background rise-in space-y-4 rounded-lg border px-4 py-6 delay-500"
     >
       <FieldGroup>
         <form.AppField name="name">
@@ -69,13 +69,14 @@ export function ProductForm({ product }: ProductFormProps) {
           {(field) => (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <h2>Raw Materials</h2>
+                <h2 className="text-sea-ink-soft max-w-2xl text-base sm:text-lg">Raw Materials</h2>
                 <Button variant="secondary" size="sm" onClick={() => field.pushValue({ id: '', quantity_needed: '' })}>
                   Add <Plus />
                 </Button>
               </div>
+
               {field.state.value.map((_, index) => (
-                <div key={index} className="mb-4 border rounded-lg p-4 flex flex-col gap-4 lg:flex-row lg:items-center">
+                <div key={index} className="mb-4 flex flex-col gap-4 rounded-lg border p-4 lg:flex-row lg:items-end">
                   <form.AppField name={`rawMaterials[${index}].id`}>
                     {({ SelectField }) => (
                       <SelectField
@@ -91,13 +92,17 @@ export function ProductForm({ product }: ProductFormProps) {
                   <form.AppField key={index} name={`rawMaterials[${index}].quantity_needed`}>
                     {({ InputField }) => <InputField label="Quantity Needed" placeholder="type the quantity needed" />}
                   </form.AppField>
+
+                  <Button variant="destructive" size="icon" onClick={() => field.removeValue(index)}>
+                    <Trash />
+                  </Button>
                 </div>
               ))}
             </div>
           )}
         </form.AppField>
         <form.AppForm>
-          <form.SubmitButton label={product ? 'Atualizar' : 'Criar'} className="ml-auto" />
+          <form.SubmitButton label={product ? 'Update' : 'Create'} className="ml-auto" />
         </form.AppForm>
       </FieldGroup>
     </form>
