@@ -12,6 +12,7 @@ export interface ApiDefinition {
     }
   }
   products: {
+    forge: typeof routes['products.forge']
     index: typeof routes['products.index']
     store: typeof routes['products.store']
     show: typeof routes['products.show']

@@ -40,6 +40,17 @@ export interface Registry {
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['destroy']>>>
     }
   }
+  'products.forge': {
+    methods: ["PATCH"]
+    pattern: '/api/v1/products/:id/forge'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/forge').forgeValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/forge').forgeValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['forge']>>>
+    }
+  }
   'products.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/products'
