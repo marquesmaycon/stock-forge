@@ -2,6 +2,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { Toaster } from 'sonner'
 
 import { Footer } from '#/components/layout/footer'
 import { Header } from '#/components/layout/header'
@@ -68,6 +69,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           />
         </TanStackQueryProvider>
         <Scripts />
+        <Toaster richColors />
       </body>
     </html>
   )
