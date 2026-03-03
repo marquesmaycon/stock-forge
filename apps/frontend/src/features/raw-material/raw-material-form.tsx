@@ -12,8 +12,9 @@ type RawMaterialFormProps = {
 }
 
 export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
-  const { mutateAsync: updateRawMaterial } = useMutation(api.rawMaterials.update.mutationOptions())
   const { mutateAsync: createRawMaterial } = useMutation(api.rawMaterials.store.mutationOptions())
+  const { mutateAsync: updateRawMaterial } = useMutation(api.rawMaterials.update.mutationOptions())
+  const { mutateAsync: destroy } = useMutation(api.rawMaterials.destroy.mutationOptions())
 
   const form = useAppForm({
     ...rawMaterialFormOption,
@@ -43,9 +44,12 @@ export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
           {({ InputField }) => <InputField label="Quantity" placeholder="type the raw material quantity" />}
         </form.AppField>
 
-        <form.AppForm>
-          <form.SubmitButton label={rawMaterial ? 'Update' : 'Create'} className="ml-auto" />
-        </form.AppForm>
+        <div className="flex justify-end gap-8">
+          <form.AppForm>
+            {rawMaterial && <form.DestroyButton destroy={() => destroy({ params: { id: rawMaterial.id } })} />}
+            <form.SubmitButton label={rawMaterial ? 'Update' : 'Create'} />
+          </form.AppForm>
+        </div>
       </FieldGroup>
     </form>
   )

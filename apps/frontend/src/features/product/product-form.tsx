@@ -1,13 +1,26 @@
 import { formOptions } from '@tanstack/react-form'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import type { Route } from '@tuyau/core/types'
-import { Plus, Trash } from 'lucide-react'
+import { Plus, Trash, Trash2Icon } from 'lucide-react'
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '#/components/ui/alert-dialog'
 import { Button } from '#/components/ui/button'
 import { FieldGroup } from '#/components/ui/field'
 import { Separator } from '#/components/ui/separator'
 import { useAppForm } from '#/hooks/form'
 import { api } from '#/lib/api'
+import { cn } from '#/lib/utils'
 
 import type { ProductSchema } from './schema'
 import { productSchema } from './schema'
@@ -32,17 +45,18 @@ const productFormOptions = formOptions({
 export function ProductForm({ product }: ProductFormProps) {
   const { data: rawMaterials } = useQuery(api.rawMaterials.index.queryOptions())
 
-  const { mutateAsync: updateProduct } = useMutation(api.products.update.mutationOptions())
-  const { mutateAsync: createProduct } = useMutation(api.products.store.mutationOptions())
+  const { mutateAsync: create } = useMutation(api.products.store.mutationOptions())
+  const { mutateAsync: update } = useMutation(api.products.update.mutationOptions())
+  const { mutateAsync: destroy } = useMutation(api.products.destroy.mutationOptions())
 
   const form = useAppForm({
     ...productFormOptions,
     defaultValues: product ?? productFormOptions.defaultValues,
     onSubmit: async ({ value }) => {
       if (product) {
-        await updateProduct({ body: value, params: { id: product.id } })
+        await update({ body: value, params: { id: product.id } })
       } else {
-        await createProduct({ body: value })
+        await create({ body: value })
       }
     },
   })
@@ -101,9 +115,12 @@ export function ProductForm({ product }: ProductFormProps) {
             </div>
           )}
         </form.AppField>
-        <form.AppForm>
-          <form.SubmitButton label={product ? 'Update' : 'Create'} className="ml-auto" />
-        </form.AppForm>
+        <div className="flex justify-end gap-8">
+          <form.AppForm>
+            {product && <form.DestroyButton destroy={() => destroy({ params: { id: product.id } })} />}
+            <form.SubmitButton label={product ? 'Update' : 'Create'} />
+          </form.AppForm>
+        </div>
       </FieldGroup>
     </form>
   )

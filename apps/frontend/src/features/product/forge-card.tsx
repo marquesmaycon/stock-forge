@@ -53,7 +53,9 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
             <AvatarImage src={`./images/lagoon-${Math.floor(Math.random() * 5) + 1}.svg`} className="object-cover" />
             <AvatarFallback>{product.name.slice(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
-          <h2 className="text-sea-ink text-lg font-bold">{product.name}</h2>
+          <Link to="/products/$id" params={{ id: product.id }}>
+            <h2 className="text-sea-ink text-lg font-bold hover:underline">{product.name}</h2>
+          </Link>
         </CardTitle>
         <CardDescription>Stock: 2</CardDescription>
       </CardHeader>
