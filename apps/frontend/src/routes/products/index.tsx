@@ -31,7 +31,7 @@ function RouteComponent() {
       </PageTitle.Root>
 
       <section>
-        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {products?.data.map((product, i) => (
             <li key={product.id}>
               <Item

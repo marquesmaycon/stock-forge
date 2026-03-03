@@ -17,7 +17,7 @@ function RouteComponent() {
   return (
     <main>
       <PageTitle.Root>
-        <PageTitle.Title title={product?.name || ''} description={product?.price} eyebrow="Product" />
+        <PageTitle.Title title={product?.name || ''} description={`$ ${product?.price || 0}`} eyebrow="Product" />
         <PageTitle.BackButton to="/products" />
       </PageTitle.Root>
 
