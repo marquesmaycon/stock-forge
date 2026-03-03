@@ -13,7 +13,7 @@ function App() {
 
   return (
     <main>
-      <PageTitle.Root className="flex-wrap">
+      <PageTitle.Root className="mb-20 flex-wrap">
         <PageTitle.Background />
         <PageTitle.Title
           eyebrow="AdonisJS 7 and TanStack Start"
@@ -38,11 +38,11 @@ function App() {
         </div>
       </PageTitle.Root>
 
-      <section className="">
-        <h2 className="page-title font-serif">Forge Products</h2>
+      <section>
+        <h2 className="page-title mb-12 w-full max-w-none text-center font-serif">Forge Products</h2>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {products?.data.map((p, index) => (
+          {products?.map((p, index) => (
             <ForgeCard product={p} animationDelay={index * 90 + 80} />
           ))}
         </ul>

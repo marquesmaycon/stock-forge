@@ -32,22 +32,18 @@ function RouteComponent() {
 
       <section>
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {products?.data.map((product, i) => (
+          {products?.map((product, i) => (
             <li key={product.id}>
               <Item
                 variant="outline"
                 asChild
                 role="listitem"
-                className="bg-lagoon/50 dark:bg-surface/75 rise-in"
+                className="bg-sand rise-in"
                 style={{ animationDelay: `${i * 90 + 80}ms` }}
               >
                 <Link to="/products/$id" params={{ id: product.id }}>
                   <ItemMedia>
                     <Avatar>
-                      <AvatarImage
-                        src={`./images/lagoon-${Math.floor(Math.random() * 5) + 1}.svg`}
-                        className="object-cover"
-                      />
                       <AvatarFallback>{product.name.slice(0, 2).toUpperCase()}</AvatarFallback>
                     </Avatar>
                   </ItemMedia>

@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import type { Route } from '@tuyau/core/types'
+import { toast } from 'sonner'
 
 import { FieldGroup } from '#/components/ui/field'
 import { useAppForm } from '#/hooks/form'
@@ -12,9 +14,48 @@ type RawMaterialFormProps = {
 }
 
 export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
-  const { mutateAsync: createRawMaterial } = useMutation(api.rawMaterials.store.mutationOptions())
-  const { mutateAsync: updateRawMaterial } = useMutation(api.rawMaterials.update.mutationOptions())
-  const { mutateAsync: destroy } = useMutation(api.rawMaterials.destroy.mutationOptions())
+  const navigate = useNavigate()
+
+  const { mutateAsync: createRawMaterial } = useMutation({
+    ...api.rawMaterials.store.mutationOptions(),
+    onSuccess: ({ id }) => {
+      toast.success('Raw material created')
+      navigate({ to: '/products/$id', params: { id } })
+    },
+    onError: (err) => {
+      toast.error('Error creating raw material', { description: err.response.message })
+    },
+    onSettled: (_, __, ___, ____, { client }) => {
+      client.invalidateQueries(api.rawMaterials.index.queryOptions())
+    },
+  })
+  const { mutateAsync: updateRawMaterial } = useMutation({
+    ...api.rawMaterials.update.mutationOptions(),
+    onSuccess: () => {
+      toast.success('Raw material updated')
+    },
+    onError: (err) => {
+      toast.error('Error updating raw material', { description: err.response.message })
+    },
+    onSettled: (_, __, { params: { id } }, ____, { client }) => {
+      client.invalidateQueries(api.rawMaterials.index.queryOptions())
+      client.invalidateQueries(api.rawMaterials.show.queryOptions({ params: { id } }))
+    },
+  })
+  const { mutateAsync: destroy } = useMutation({
+    ...api.rawMaterials.destroy.mutationOptions(),
+    onSuccess: () => {
+      toast.success('Raw material deleted')
+      navigate({ to: '/raw-materials' })
+    },
+    onError: (err) => {
+      toast.error('Error deleting raw material', { description: err.response.message })
+    },
+    onSettled: (_, __, { params: { id } }, ____, { client }) => {
+      client.invalidateQueries(api.rawMaterials.index.queryOptions())
+      client.removeQueries(api.rawMaterials.show.queryOptions({ params: { id } }))
+    },
+  })
 
   const form = useAppForm({
     ...rawMaterialFormOption,

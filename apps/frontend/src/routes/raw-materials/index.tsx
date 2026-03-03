@@ -18,7 +18,7 @@ function RouteComponent() {
   return (
     <main>
       <PageTitle.Root>
-        <PageTitle.Background first="from-lagoon/50" second="from-palm/25" />
+        <PageTitle.Background first="from-sea-ink-soft/50" second="from-palm/25" />
         <PageTitle.Title
           title="Raw Materials"
           description="Manage your raw materials here. You can add new materials, edit existing ones, and keep track of their usage in your products."
@@ -38,7 +38,7 @@ function RouteComponent() {
                 variant="outline"
                 asChild
                 role="listitem"
-                className="bg-palm/50 dark:bg-surface rise-in"
+                className="bg-sand rise-in"
                 style={{ animationDelay: `${i * 90 + 80}ms` }}
               >
                 <Link to="/raw-materials/$id" params={{ id: material.id }}>

@@ -5,7 +5,7 @@ import { Anvil, ArrowRight, Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
-import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar'
+import { Avatar, AvatarFallback } from '#/components/ui/avatar'
 import { Badge } from '#/components/ui/badge'
 import { Button } from '#/components/ui/button'
 import { ButtonGroup } from '#/components/ui/button-group'
@@ -15,7 +15,7 @@ import { api } from '#/lib/api'
 import { calculateProduction, cn } from '#/lib/utils'
 
 type ForgeCardProps = {
-  product: Route.Response<'products.index'>['data'][number]
+  product: Route.Response<'products.index'>[number]
   animationDelay: number
 }
 
@@ -49,8 +49,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
           </Badge>
         </CardAction>
         <CardTitle className="flex items-center gap-3">
-          <Avatar className="size-6">
-            <AvatarImage src={`./images/lagoon-${Math.floor(Math.random() * 5) + 1}.svg`} className="object-cover" />
+          <Avatar>
             <AvatarFallback>{product.name.slice(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <Link to="/products/$id" params={{ id: product.id }}>

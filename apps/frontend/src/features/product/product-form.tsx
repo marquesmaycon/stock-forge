@@ -1,26 +1,15 @@
 import { formOptions } from '@tanstack/react-form'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import type { Route } from '@tuyau/core/types'
-import { Plus, Trash, Trash2Icon } from 'lucide-react'
+import { Plus, Trash } from 'lucide-react'
+import { toast } from 'sonner'
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogMedia,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '#/components/ui/alert-dialog'
 import { Button } from '#/components/ui/button'
 import { FieldGroup } from '#/components/ui/field'
 import { Separator } from '#/components/ui/separator'
 import { useAppForm } from '#/hooks/form'
 import { api } from '#/lib/api'
-import { cn } from '#/lib/utils'
 
 import type { ProductSchema } from './schema'
 import { productSchema } from './schema'
@@ -43,11 +32,49 @@ const productFormOptions = formOptions({
 })
 
 export function ProductForm({ product }: ProductFormProps) {
+  const navigate = useNavigate()
   const { data: rawMaterials } = useQuery(api.rawMaterials.index.queryOptions())
 
-  const { mutateAsync: create } = useMutation(api.products.store.mutationOptions())
-  const { mutateAsync: update } = useMutation(api.products.update.mutationOptions())
-  const { mutateAsync: destroy } = useMutation(api.products.destroy.mutationOptions())
+  const { mutateAsync: create } = useMutation({
+    ...api.products.store.mutationOptions(),
+    onSuccess: ({ id }) => {
+      toast.success('Product created')
+      navigate({ to: '/products/$id', params: { id } })
+    },
+    onError: (err) => {
+      toast.error('Error creating product', { description: err.response.message })
+    },
+    onSettled: (_, __, ___, ____, { client }) => {
+      client.invalidateQueries(api.products.index.queryOptions())
+    },
+  })
+  const { mutateAsync: update } = useMutation({
+    ...api.products.update.mutationOptions(),
+    onSuccess: () => {
+      toast.success('Product updated')
+    },
+    onError: (err) => {
+      toast.error('Error updating product', { description: err.response.message })
+    },
+    onSettled: (_, __, { params: { id } }, ____, { client }) => {
+      client.invalidateQueries(api.products.index.queryOptions())
+      client.invalidateQueries(api.products.show.queryOptions({ params: { id } }))
+    },
+  })
+  const { mutateAsync: destroy } = useMutation({
+    ...api.products.destroy.mutationOptions(),
+    onSuccess: () => {
+      toast.success('Product deleted')
+      navigate({ to: '/products' })
+    },
+    onError: (err) => {
+      toast.error('Error deleting product', { description: err.response.message })
+    },
+    onSettled: (_, __, { params: { id } }, ____, { client }) => {
+      client.invalidateQueries(api.products.index.queryOptions())
+      client.removeQueries(api.products.show.queryOptions({ params: { id } }))
+    },
+  })
 
   const form = useAppForm({
     ...productFormOptions,
@@ -67,14 +94,14 @@ export function ProductForm({ product }: ProductFormProps) {
         e.preventDefault()
         form.handleSubmit()
       }}
-      className="bg-background rise-in space-y-4 rounded-lg border px-4 py-6 delay-500"
+      className="bg-surface rise-in space-y-4 rounded-lg border px-4 py-6 delay-500"
     >
       <FieldGroup>
         <form.AppField name="name">
           {({ InputField }) => <InputField label="Name" placeholder="type the product name" />}
         </form.AppField>
         <form.AppField name="price">
-          {({ InputField }) => <InputField label="Price" placeholder="type the product price" />}
+          {({ InputField }) => <InputField label="Price" placeholder="type the product price" type="number" />}
         </form.AppField>
 
         <Separator />
@@ -89,7 +116,7 @@ export function ProductForm({ product }: ProductFormProps) {
                 </Button>
               </div>
 
-              {field.state.value.map((_, index) => (
+              {field.state.value.map((_, index, arr) => (
                 <div key={index} className="mb-4 flex flex-col gap-4 rounded-lg border p-4 lg:flex-row lg:items-end">
                   <form.AppField name={`rawMaterials[${index}].id`}>
                     {({ SelectField }) => (
@@ -107,7 +134,12 @@ export function ProductForm({ product }: ProductFormProps) {
                     {({ InputField }) => <InputField label="Quantity Needed" placeholder="type the quantity needed" />}
                   </form.AppField>
 
-                  <Button variant="destructive" size="icon" onClick={() => field.removeValue(index)}>
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    onClick={() => field.removeValue(index)}
+                    disabled={arr.length == 1}
+                  >
                     <Trash />
                   </Button>
                 </div>
