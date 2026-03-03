@@ -13,7 +13,7 @@ export default class ProductsController {
   async index({ serialize, response }: HttpContext) {
     const products = await Product.query().preload('rawMaterials')
 
-    const data = await serialize(ProductTransformer.transform(products))
+    const { data } = await serialize(ProductTransformer.transform(products))
 
     return response.ok(data)
   }
@@ -30,7 +30,7 @@ export default class ProductsController {
 
     await product.load('rawMaterials')
 
-    const data = await serialize(ProductTransformer.transform(product))
+    const { data } = await serialize(ProductTransformer.transform(product))
 
     return response.created(data)
   }
@@ -63,7 +63,7 @@ export default class ProductsController {
 
     await product.load('rawMaterials')
 
-    const data = await serialize(ProductTransformer.transform(product))
+    const { data } = await serialize(ProductTransformer.transform(product))
 
     return response.ok(data)
   }
@@ -129,9 +129,9 @@ export default class ProductsController {
       await trx.commit()
       await product.refresh()
 
-      const { data: updatedProduct } = await serialize(ProductTransformer.transform(product))
+      const { data } = await serialize(ProductTransformer.transform(product))
 
-      return response.ok(updatedProduct)
+      return response.ok(data)
     } catch (err) {
       console.log({ err })
       await trx.rollback()

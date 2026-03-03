@@ -34,7 +34,10 @@ export default class RawMaterialsController {
    * Show individual record
    */
   async show({ params, response, serialize }: HttpContext) {
-    const rawMaterial = await RawMaterial.findOrFail(params.id)
+    const rawMaterial = await RawMaterial.query()
+      .preload('products')
+      .where('id', params.id)
+      .firstOrFail()
 
     const { data } = await serialize(RawMaterialTransformer.transform(rawMaterial))
 
@@ -44,14 +47,16 @@ export default class RawMaterialsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, response }: HttpContext) {
+  async update({ params, request, response, serialize }: HttpContext) {
     const payload = await request.validateUsing(rawMaterialValidator)
 
     const rawMaterial = await RawMaterial.findOrFail(params.id)
 
     await rawMaterial.merge(payload).save()
 
-    return response.ok({ rawMaterial })
+    const { data } = await serialize(RawMaterialTransformer.transform(rawMaterial))
+
+    return response.ok(data)
   }
 
   /**
