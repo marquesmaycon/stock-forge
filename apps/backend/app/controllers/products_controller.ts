@@ -82,7 +82,7 @@ export default class ProductsController {
   /**
    * Forge a Product
    */
-  async forge({ request, response, serialize, logger }: HttpContext) {
+  async forge({ request, response, serialize }: HttpContext) {
     const { quantity = 1, params } = await request.validateUsing(forgeValidator)
 
     const trx = await db.transaction()
@@ -93,25 +93,18 @@ export default class ProductsController {
         .preload('rawMaterials', (q) => q.forUpdate())
         .firstOrFail()
 
-      logger.info({ quantity, productId: params.id }, 'Starting forge operation')
-
       for (const material of product.rawMaterials) {
-        console.log({ material })
         const currentQuantity = Number(material.quantity)
-
-        console.log({ currentQuantity })
 
         const neededPerUnit = Number(material.$extras?.pivot_quantity_needed ?? 0)
 
         if (Number.isNaN(currentQuantity) || Number.isNaN(neededPerUnit)) {
-          console.log('error 1')
           throw new Error(`Invalid quantity data for raw material ${material.name}`)
         }
 
         const requiredQuantity = neededPerUnit * quantity
 
         if (currentQuantity < requiredQuantity) {
-          console.log('error 2')
           throw new Error(`Insufficient quantity for raw material ${material.name}`)
         }
       }
@@ -131,7 +124,7 @@ export default class ProductsController {
 
       const { data } = await serialize(ProductTransformer.transform(product))
 
-      return response.ok(data)
+      return response.created(data)
     } catch (err) {
       console.log({ err })
       await trx.rollback()

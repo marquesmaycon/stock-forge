@@ -6,7 +6,7 @@ export const ProductFactory = factory
   .define(Product, async ({ faker }) => {
     return {
       name: faker.commerce.product(),
-      price: faker.number.float({ min: 50, max: 2000 }).toString(),
+      price: faker.number.float({ min: 50, max: 2000, fractionDigits: 2 }).toString(),
     }
   })
   .relation('rawMaterials', () => RawMaterialFactory)

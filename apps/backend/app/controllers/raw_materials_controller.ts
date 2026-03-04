@@ -1,5 +1,5 @@
 import RawMaterial from '#models/raw_material'
-import { RawmaterialService } from '#services/rawmaterial_service'
+import { RawMaterialService } from '#services/raw_material_service'
 import RawMaterialTransformer from '#transformers/raw_material_transformer'
 import { rawMaterialValidator } from '#validators/raw_material'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -75,7 +75,7 @@ export default class RawMaterialsController {
    * Seed raw materials
    */
   async seed({ response }: HttpContext) {
-    await RawmaterialService.seedRawMaterials()
+    await RawMaterialService.seedRawMaterials()
 
     return response.noContent()
   }
