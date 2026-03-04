@@ -15,7 +15,7 @@ import { api } from '#/lib/api'
 import { calculateProduction, cn } from '#/lib/utils'
 
 type ForgeCardProps = {
-  product: Route.Response<'products.index'>[number]
+  product: Route.Response<'products.index'>['products'][number]
   animationDelay: number
 }
 

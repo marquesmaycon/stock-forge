@@ -1,5 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { ChevronDown } from 'lucide-react'
+import React from 'react'
 
 import { EmptyForge } from '#/components/empty-forge'
 import { PageTitle } from '#/components/page-title'
@@ -7,11 +9,14 @@ import { Button } from '#/components/ui/button'
 import { Skeleton } from '#/components/ui/skeleton'
 import { ForgeCard } from '#/features/product/forge-card'
 import { api } from '#/lib/api'
+import { cn } from '#/lib/utils'
 
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const { data: products, isLoading } = useQuery(api.products.index.queryOptions())
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    api.products.index.infiniteQueryOptions({}, { initialPageParam: 1, getNextPageParam: (lp) => lp.meta.nextPage }),
+  )
 
   return (
     <main>
@@ -43,9 +48,9 @@ function App() {
       <section className="rise-in">
         <h2 className="page-title mb-12 w-full max-w-none text-center font-serif">Forge Products</h2>
 
-        {products?.length == 0 && <EmptyForge />}
+        {data?.pages[0].products.length === 0 && <EmptyForge />}
 
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-12">
           {isLoading && (
             <>
               <Skeleton className="bg-surface-strong h-96 rounded-2xl" />
@@ -54,10 +59,27 @@ function App() {
             </>
           )}
 
-          {products?.map((p, index) => (
-            <ForgeCard key={p.id} product={p} animationDelay={index * 90 + 80} />
+          {data?.pages.map((group, index) => (
+            <React.Fragment key={index}>
+              {group.products.map((p, i) => (
+                <ForgeCard key={p.id} product={p} animationDelay={i * 90 + 80} />
+              ))}
+            </React.Fragment>
           ))}
         </ul>
+
+        <div className="rise-in mt-8 flex">
+          <Button
+            onClick={() => fetchNextPage()}
+            className="mx-auto"
+            loading={isFetchingNextPage || isLoading}
+            disabled={!hasNextPage}
+            variant="outline"
+          >
+            {hasNextPage ? 'Load more ' : 'Nothing more to load'}
+            <ChevronDown className={cn(!hasNextPage && 'hidden')} />
+          </Button>
+        </div>
       </section>
     </main>
   )

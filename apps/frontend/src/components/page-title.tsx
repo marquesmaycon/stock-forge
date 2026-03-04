@@ -11,7 +11,7 @@ function Root({ children, className, ...props }: React.HTMLAttributes<HTMLDivEle
   return (
     <section
       className={cn(
-        'island-shell rise-in relative mb-10 flex min-h-64 flex-col items-center justify-between overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14 lg:flex-row',
+        'island-shell rise-in relative mb-10 flex min-h-64 flex-col items-start justify-between overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-center',
         className,
       )}
       {...props}
@@ -68,7 +68,7 @@ type BackButtonProps = {
 
 function BackButton({ to, label = 'Back' }: BackButtonProps) {
   return (
-    <Button variant="secondary" asChild>
+    <Button variant="secondary" asChild className="ml-auto">
       <Link to={to}>
         <ArrowLeft />
         {label}
