@@ -1,6 +1,7 @@
 import Product from '#models/product'
 import ProductTransformer from '#transformers/product_transformer'
 import { forgeValidator } from '#validators/forge'
+import { paginationValidator } from '#validators/pagination'
 import { productValidator } from '#validators/product'
 import type { HttpContext } from '@adonisjs/core/http'
 import db from '@adonisjs/lucid/services/db'
@@ -10,12 +11,17 @@ export default class ProductsController {
   /**
    * Display a list of resource
    */
-  async index({ serialize, response }: HttpContext) {
-    const products = await Product.query().preload('rawMaterials')
-
+  async index({ serialize, request, response }: HttpContext) {
+    const { page = 1, limit = 6 } = await request.validateUsing(paginationValidator)
+    const products = await Product.query().preload('rawMaterials').paginate(page, limit)
     const { data } = await serialize(ProductTransformer.transform(products))
 
-    return response.ok(data)
+    return response.ok({
+      products: data,
+      meta: {
+        nextPage: products.hasMorePages ? products.currentPage + 1 : null,
+      },
+    })
   }
 
   /**

@@ -58,7 +58,7 @@ export interface Registry {
       body: {}
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQueryForGet<InferInput<(typeof import('#validators/pagination').paginationValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['index']>>>
     }
   }
@@ -124,7 +124,7 @@ export interface Registry {
       body: {}
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQueryForGet<InferInput<(typeof import('#validators/pagination').paginationValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['index']>>>
     }
   }

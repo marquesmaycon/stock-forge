@@ -1,6 +1,7 @@
 import RawMaterial from '#models/raw_material'
 import { RawMaterialService } from '#services/raw_material_service'
 import RawMaterialTransformer from '#transformers/raw_material_transformer'
+import { paginationValidator } from '#validators/pagination'
 import { rawMaterialValidator } from '#validators/raw_material'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -8,14 +9,21 @@ export default class RawMaterialsController {
   /**
    * Display a list of resource
    */
-  async index({ response, serialize }: HttpContext) {
-    const rawMaterials = await RawMaterial.query().withAggregate('products', (query) =>
-      query.count('*').as('products_count')
-    )
+  async index({ request, response, serialize }: HttpContext) {
+    const { page = 1, limit = 6 } = await request.validateUsing(paginationValidator)
+
+    const rawMaterials = await RawMaterial.query()
+      .withAggregate('products', (query) => query.count('*').as('products_count'))
+      .paginate(page, limit)
 
     const { data } = await serialize(RawMaterialTransformer.transform(rawMaterials))
 
-    return response.ok(data)
+    return response.ok({
+      rawMaterials: data,
+      meta: {
+        nextPage: rawMaterials.hasMorePages ? rawMaterials.currentPage + 1 : null,
+      },
+    })
   }
 
   /**
