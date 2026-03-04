@@ -1,8 +1,11 @@
 # ⚙️ Stock Forge
 
-> Uma plataforma full‑stack para gerenciamento de produtos e matérias‑primas.
+## Uma plataforma full‑stack para gerenciamento de produtos e matérias‑primas.
 
----
+## 🌐 Demo Online
+> A API entra em hibernação quando sem acessos. Pode demorar 1 ou 2 minutos para que ela esteja disponível novamente após hibernar.
+
+**[👉 VER PROJETO AO VIVO](https://stock-forge.mklly.com.br/)**
 
 ## 🧱 Stack
 
