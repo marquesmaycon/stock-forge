@@ -75,7 +75,7 @@ export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
         e.preventDefault()
         form.handleSubmit()
       }}
-      className="bg-background rise-in space-y-4 rounded-lg border px-4 py-6"
+      className="bg-surface rise-in space-y-4 rounded-lg border px-4 py-6"
     >
       <FieldGroup>
         <form.AppField name="name">

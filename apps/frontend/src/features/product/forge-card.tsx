@@ -23,7 +23,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
   const [quantity, setQuantity] = useState(1)
   const production = calculateProduction(product)
 
-  const { mutateAsync: forge } = useMutation({
+  const { mutateAsync: forge, isPending } = useMutation({
     ...api.products.forge.mutationOptions(),
     onSettled: (_, __, ___, ____, { client }) => {
       client.invalidateQueries(api.products.index.queryOptions())
@@ -39,6 +39,8 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
   async function handleForge() {
     await forge({ body: { quantity }, params: { id: product.id } })
   }
+
+  const canProduce = production > 0
 
   return (
     <Card className="bg-surface rise-in" style={{ animationDelay: `${animationDelay}ms` }}>
@@ -94,7 +96,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
           <Button
             variant="secondary"
             onClick={() => setQuantity((p) => (p <= 0 ? 0 : p - 1))}
-            disabled={quantity == 0 || production < 1}
+            disabled={quantity == 0 || !canProduce}
           >
             <Minus />
           </Button>
@@ -102,7 +104,8 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
             variant="secondary"
             className="flex-1"
             onClick={() => handleForge()}
-            disabled={quantity == 0 || production < 1}
+            disabled={quantity == 0 || !canProduce}
+            loading={isPending}
           >
             <Anvil />
             Forge {quantity}
@@ -110,7 +113,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
           <Button
             variant="secondary"
             onClick={() => setQuantity((p) => (p >= 10 ? 10 : p + 1))}
-            disabled={quantity == production || quantity >= 10 || production < 1}
+            disabled={quantity == production || quantity > 10 || !canProduce}
           >
             <Plus />
           </Button>

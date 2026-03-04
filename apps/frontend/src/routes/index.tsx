@@ -23,14 +23,14 @@ function App() {
         <div className="flex w-full flex-wrap gap-3">
           <Button
             size="lg"
-            className="text-lagoon-deep hover:text-lagoon-deep/50 rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
+            className="text-lagoon-deep hover:text-lagoon-deep/50 border-sea-ink/33 bg-hero-a/33 hover:bg-hero-a rounded-full border px-5 py-2.5 text-sm font-semibold no-underline transition hover:-translate-y-0.5"
             asChild
           >
             <Link to="/products">Explore Products</Link>
           </Button>
           <Button
             size="lg"
-            className="text-sea-ink rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]"
+            className="text-sea-ink hover:bg border-sea-ink/33 hover:border-sea-ink/50 hover:bg-hero-b bg-foam rounded-full border px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
             asChild
           >
             <Link to="/raw-materials">Raw Materials</Link>
@@ -43,7 +43,7 @@ function App() {
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {products?.map((p, index) => (
-            <ForgeCard product={p} animationDelay={index * 90 + 80} />
+            <ForgeCard key={p.id} product={p} animationDelay={index * 90 + 80} />
           ))}
         </ul>
       </section>

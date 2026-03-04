@@ -24,12 +24,12 @@ function RouteComponent() {
 
       <RawMaterialForm rawMaterial={rawMaterial} />
 
-      <div className="bg-background rise-in space-y-4 rounded-lg border px-4 py-6">
+      <div className="bg-surface rise-in space-y-4 rounded-lg border px-4 py-6">
         <h3>Used in:</h3>
         <ul className="flex flex-wrap items-center">
           {rawMaterial?.products?.map((p) => (
             <li key={p.id}>
-              <Button variant="link">
+              <Button variant="link" asChild>
                 <Link to="/products/$id" params={{ id: p.id }}>
                   {p.name}
                 </Link>
