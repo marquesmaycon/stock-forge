@@ -14,7 +14,7 @@ import { cn } from '#/lib/utils'
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } = useInfiniteQuery(
     api.products.index.infiniteQueryOptions({}, { initialPageParam: 1, getNextPageParam: (lp) => lp.meta.nextPage }),
   )
 
@@ -62,7 +62,7 @@ function App() {
           {data?.pages.map((group, index) => (
             <React.Fragment key={index}>
               {group.products.map((p, i) => (
-                <ForgeCard key={p.id} product={p} animationDelay={i * 90 + 80} />
+                <ForgeCard key={p.id} product={p} animationDelay={i * 90 + 80} refetching={isRefetching} />
               ))}
             </React.Fragment>
           ))}

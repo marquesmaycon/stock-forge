@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback } from '#/components/ui/avatar'
 import { Badge } from '#/components/ui/badge'
 import { Button } from '#/components/ui/button'
 import { ButtonGroup } from '#/components/ui/button-group'
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '#/components/ui/card'
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from '#/components/ui/card'
 import { Item, ItemActions, ItemContent, ItemHeader, ItemTitle } from '#/components/ui/item'
 import { api } from '#/lib/api'
 import { calculateProduction, cn } from '#/lib/utils'
@@ -17,9 +17,10 @@ import { calculateProduction, cn } from '#/lib/utils'
 type ForgeCardProps = {
   product: Route.Response<'products.index'>['products'][number]
   animationDelay: number
+  refetching: boolean
 }
 
-export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
+export function ForgeCard({ product, animationDelay, refetching }: ForgeCardProps) {
   const [quantity, setQuantity] = useState(1)
   const production = calculateProduction(product)
 
@@ -58,7 +59,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
             <h2 className="text-sea-ink text-lg font-bold hover:underline">{product.name}</h2>
           </Link>
         </CardTitle>
-        <CardDescription>Stock: 2</CardDescription>
+        {/* <CardDescription>Stock: 2</CardDescription> */}
       </CardHeader>
       <CardContent className="flex h-full flex-col items-center space-y-6">
         <h3 className="text-sea-ink-soft text-center text-lg font-semibold">Raw Materials</h3>
@@ -66,7 +67,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
         <ul className="w-full space-y-2">
           {product.rawMaterials.map((rm) => (
             <li key={rm.id} className="flex flex-col">
-              <Item variant="outline">
+              <Item variant="outline" className={cn(refetching && 'animate-pulse')}>
                 <ItemHeader>
                   <ItemTitle className="text-sea-ink-soft">{rm.name}</ItemTitle>
                 </ItemHeader>
