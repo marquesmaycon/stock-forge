@@ -68,12 +68,12 @@ type BackButtonProps = {
 
 function BackButton({ to, label = 'Back' }: BackButtonProps) {
   return (
-    <Link to={to}>
-      <Button variant="secondary">
+    <Button variant="secondary" asChild>
+      <Link to={to}>
         <ArrowLeft />
         {label}
-      </Button>
-    </Link>
+      </Link>
+    </Button>
   )
 }
 

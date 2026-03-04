@@ -2,10 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Plus } from 'lucide-react'
 
+import { EmptyForge } from '#/components/empty-forge'
 import { PageTitle } from '#/components/page-title'
 import { Avatar, AvatarFallback } from '#/components/ui/avatar'
 import { Button } from '#/components/ui/button'
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '#/components/ui/item'
+import { Skeleton } from '#/components/ui/skeleton'
 import { api } from '#/lib/api'
 
 export const Route = createFileRoute('/raw-materials/')({
@@ -13,7 +15,7 @@ export const Route = createFileRoute('/raw-materials/')({
 })
 
 function RouteComponent() {
-  const { data: rawMaterials } = useQuery(api.rawMaterials.index.queryOptions())
+  const { data: rawMaterials, isLoading } = useQuery(api.rawMaterials.index.queryOptions())
 
   return (
     <main>
@@ -23,15 +25,23 @@ function RouteComponent() {
           title="Raw Materials"
           description="Manage your raw materials here. You can add new materials, edit existing ones, and keep track of their usage in your products."
         />
-        <Link to="/raw-materials/new">
-          <Button size="lg">
+        <Button size="lg" asChild variant="secondary">
+          <Link to="/raw-materials/new">
             New Raw Material <Plus />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </PageTitle.Root>
 
       <section>
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {isLoading && (
+            <>
+              {Array.from({ length: 9 }, (_, i) => (
+                <Skeleton key={i} className="bg-sand h-20" />
+              ))}
+            </>
+          )}
+
           {rawMaterials?.map((material, i) => (
             <li key={material.id}>
               <Item
@@ -60,6 +70,8 @@ function RouteComponent() {
           ))}
         </ul>
       </section>
+
+      {rawMaterials?.length == 0 && <EmptyForge />}
     </main>
   )
 }

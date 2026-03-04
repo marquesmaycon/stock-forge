@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { Link, useNavigate } from '@tanstack/react-router'
-import { Anvil, ArrowUpRightIcon, Leaf } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { Anvil, ArrowUpRight, Leaf } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
@@ -27,8 +27,8 @@ export function EmptyForge() {
           <Anvil />
         </EmptyMedia>
         <EmptyTitle>No recipes yet</EmptyTitle>
-        <EmptyDescription>
-          You haven&apos;t created any products or raw materials yet. Get started by creating them or run the seed.
+        <EmptyDescription className="text-balance">
+          You haven&apos;t created any products and/or raw materials. Get started running the seed or creating one.
         </EmptyDescription>
       </EmptyHeader>
       <Button onClick={() => seed({})} loading={isPending}>
@@ -36,10 +36,16 @@ export function EmptyForge() {
       </Button>
       <EmptyContent className="flex-row justify-center gap-2">
         <Button asChild variant="link">
-          <Link to="/products/new">Create Product</Link>
+          <Link to="/products/new">
+            Create Product
+            <ArrowUpRight />
+          </Link>
         </Button>
         <Button asChild variant="link">
-          <Link to="/raw-materials/new">Create Raw Material</Link>
+          <Link to="/raw-materials/new">
+            Create Raw Material
+            <ArrowUpRight />
+          </Link>
         </Button>
       </EmptyContent>
     </Empty>
