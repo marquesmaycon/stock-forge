@@ -48,9 +48,9 @@ function App() {
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {isLoading && (
             <>
-              <Skeleton className="bg-surface-strong rise-in h-96 rounded-2xl" />
-              <Skeleton className="bg-surface-strong rise-in h-96 rounded-2xl" />
-              <Skeleton className="bg-surface-strong rise-in h-96 rounded-2xl" />
+              <Skeleton className="bg-surface-strong h-96 rounded-2xl" />
+              <Skeleton className="bg-surface-strong h-96 rounded-2xl" />
+              <Skeleton className="bg-surface-strong h-96 rounded-2xl" />
             </>
           )}
 
