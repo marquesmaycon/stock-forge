@@ -82,7 +82,9 @@ export function RawMaterialForm({ rawMaterial }: RawMaterialFormProps) {
           {({ InputField }) => <InputField label="Name" placeholder="type the raw material name" />}
         </form.AppField>
         <form.AppField name="quantity">
-          {({ InputField }) => <InputField label="Quantity" placeholder="type the raw material quantity" />}
+          {({ InputField }) => (
+            <InputField label="Quantity" placeholder="type the raw material quantity" type="number" />
+          )}
         </form.AppField>
 
         <div className="flex justify-end gap-8">
