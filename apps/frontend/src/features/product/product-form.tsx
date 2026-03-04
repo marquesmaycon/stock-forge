@@ -45,7 +45,7 @@ export function ProductForm({ product }: ProductFormProps) {
       toast.error('Error creating product', { description: err.response.message })
     },
     onSettled: (_, __, ___, ____, { client }) => {
-      client.invalidateQueries(api.products.index.queryOptions())
+      client.invalidateQueries(api.products.index.infiniteQueryOptions())
     },
   })
   const { mutateAsync: update } = useMutation({
@@ -57,7 +57,7 @@ export function ProductForm({ product }: ProductFormProps) {
       toast.error('Error updating product', { description: err.response.message })
     },
     onSettled: (_, __, { params: { id } }, ____, { client }) => {
-      client.invalidateQueries(api.products.index.queryOptions())
+      client.invalidateQueries(api.products.index.infiniteQueryOptions())
       client.invalidateQueries(api.products.show.queryOptions({ params: { id } }))
     },
   })
@@ -71,7 +71,7 @@ export function ProductForm({ product }: ProductFormProps) {
       toast.error('Error deleting product', { description: err.response.message })
     },
     onSettled: (_, __, { params: { id } }, ____, { client }) => {
-      client.invalidateQueries(api.products.index.queryOptions())
+      client.invalidateQueries(api.products.index.infiniteQueryOptions())
       client.removeQueries(api.products.show.queryOptions({ params: { id } }))
     },
   })

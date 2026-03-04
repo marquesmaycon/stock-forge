@@ -26,7 +26,7 @@ export function ForgeCard({ product, animationDelay }: ForgeCardProps) {
   const { mutateAsync: forge, isPending } = useMutation({
     ...api.products.forge.mutationOptions(),
     onSettled: (_, __, ___, ____, { client }) => {
-      client.invalidateQueries(api.products.index.queryOptions())
+      client.invalidateQueries(api.products.index.infiniteQueryOptions())
     },
     onSuccess: () => {
       toast.success('Item forged!')
