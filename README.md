@@ -28,25 +28,43 @@
 
 ## 🛠️ Como rodar localmente
 
-1. **Pré‑requisitos**
-   - Node.js 18+ (recomenda‑se gerenciador de versões como nvm)
-   - PostgreSQL ou Neon (pode usar a URL já configurada)
-   - Yarn ou npm
+
+1. **Clone o repositório**
+
+  - **Pré‑requisitos**
+    - Node.js 18+ (recomenda‑se gerenciador de versões como nvm)
+    - PostgreSQL ou Neon (pode usar a URL já configurada)
+    - Yarn ou npm
+
+```bash
+# no terminal
+git clone https://github.com/marquesmaycon/stock-forge.git
+```
 
 2. **Instalar dependências**
 
 ```bash
+cd stock-forge
 # na raiz do monorepo
 npm install
 # ou
 # yarn install
 ```
 
-3. **Configurar variáveis de ambiente**
+3. **Configurar variáveis de ambiente do backend**
 
 Copie os arquivos `.env.example` de cada app (se existirem) e preencha conforme necessário. O backend tem as seguintes chaves importantes:
 
 > Confira `apps/backend/.env.example` para referência.
+
+  - Você vai precisar de uma chave aletória de 16 digitos e pode gerar com o comando abaixo.
+
+```bash
+  cd apps/backend
+  # na pasta do backend
+  node ace generate:key
+```
+  - Seu aquivo ``.env`` vai se parecer com isso
 
 ```dotenv
 # apps/backend/.env
@@ -56,7 +74,7 @@ HOST=localhost
 NODE_ENV=development
 
 LOG_LEVEL=info
-APP_KEY=<chave aleatória>
+APP_KEY=<chave aleatória com 16 caracteres>
 APP_URL=http://${HOST}:${PORT}
 
 SESSION_DRIVER=cookie
@@ -66,52 +84,45 @@ SESSION_DRIVER=cookie
 
 DATABASE_URL=postgresql://user:password@host/dbname?sslmode=require&channel_binding=require
 ```
+> Alternativamente você pode definir variáveis de ambiente para o banco de forma convencional
+
+```dotenv
+# apps/backend/.env
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_USER=root
+DB_PASSWORD=root
+DB_DATABASE=app
+```
 
 4. **Rodar projeto**
 
-Na raiz do projeto
+  -  backend + frontend
 ```bash
+# na raiz do projeto
 npm run dev
 # ou
 # yarn dev
 ```
-
-Ou separadamente:
-
-4.1 **Rodar backend**
+  - **Rodar apenas backend**
 
 ```bash
 cd apps/backend
 # iniciar servidor adonis
-node ace serve --watch
-```
-
-ou, com `npm`/`yarn`:
-
-```bash
 npm run dev
-# ou
-# yarn dev
 ```
 
-4.2. **Rodar frontend**
+  - **Rodar frontend**
 
 ```bash
 cd apps/frontend
+# iniciar TanStack Start
 npm run dev
 # ou
 # yarn dev
 ```
 
-O cliente ficará disponível em `http://localhost:5173` por padrão.
-
----
-
-
-
-> Confira `apps/backend/.env` para referência.
-
----
+O cliente ficará disponível em `http://localhost:3000` por padrão.
 
 ## 🚀 Desenvolvimento
 
@@ -123,6 +134,11 @@ O cliente ficará disponível em `http://localhost:5173` por padrão.
 - Limpa banco e roda migrations novamente:
   ```bash
   node ace migration:fresh
+  ```
+
+- Popula o banco de dados (seed):
+  ```bash
+  node ace db:seed
   ```
 
 ## 👨‍💻 Autor
