@@ -97,12 +97,12 @@ DB_DATABASE=app
 
 4. **Rodar migrations**
 ```bash
-  # na pasta do backend
+  # na pasta do backend ``apps/backend``
   node ace migration:run
 ```
   - Você pode rodar o seed (na interface também haverá essa opção)
 ```bash
-  # na pasta do backend
+  # na pasta do backend ``apps/backend``
   node ace db:seed
 ```
 
@@ -115,7 +115,7 @@ npm run dev
 # ou
 # yarn dev
 ```
-  - **Rodar apenas backend**
+  - - **Rodar apenas backend**
 
 ```bash
 cd apps/backend
@@ -123,7 +123,7 @@ cd apps/backend
 npm run dev
 ```
 
-  - **Rodar frontend**
+  - - **Rodar frontend**
 
 ```bash
 cd apps/frontend
@@ -135,8 +135,8 @@ npm run dev
 
 O cliente ficará disponível em `http://localhost:3000` por padrão.
 
-## 🚀 Desenvolvimento
-
+## 🚀 Desenvolvimento Back-End
+> Na pasta do backend `apps/backend` voce pode rodar
 - Para aplicar migrations:
   ```bash
   node ace migration:run
@@ -150,6 +150,11 @@ O cliente ficará disponível em `http://localhost:3000` por padrão.
 - Popula o banco de dados (seed):
   ```bash
   node ace db:seed
+  ```
+
+- Roda os testes:
+  ```bash
+  node ace test
   ```
 
 ## 👨‍💻 Autor
