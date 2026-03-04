@@ -27,6 +27,17 @@ export default class RawMaterialsController {
   }
 
   /**
+   * Display a list of resource without pagination
+   */
+  async listAll({ response, serialize }: HttpContext) {
+    const rawMaterials = await RawMaterial.all()
+
+    const { data } = await serialize(RawMaterialTransformer.transform(rawMaterials))
+
+    return response.ok(data)
+  }
+
+  /**
    * Handle form submission for the create action
    */
   async store({ request, response, serialize }: HttpContext) {

@@ -106,6 +106,17 @@ export interface Registry {
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['destroy']>>>
     }
   }
+  'raw_materials.list_all': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/raw-materials/list-all'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['listAll']>>>
+    }
+  }
   'raw_materials.seed': {
     methods: ["POST"]
     pattern: '/api/v1/raw-materials/seed'

@@ -33,7 +33,7 @@ const productFormOptions = formOptions({
 
 export function ProductForm({ product }: ProductFormProps) {
   const navigate = useNavigate()
-  const { data: rawMaterials } = useQuery(api.rawMaterials.index.queryOptions())
+  const { data: rawMaterials } = useQuery(api.rawMaterials.listAll.queryOptions())
 
   const { mutateAsync: create } = useMutation({
     ...api.products.store.mutationOptions(),

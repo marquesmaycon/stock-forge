@@ -29,6 +29,7 @@ router
     router.patch('products/:id/forge', [controllers.Products, 'forge'])
     router.resource('products', controllers.Products).apiOnly()
 
+    router.get('raw-materials/list-all', [controllers.RawMaterials, 'listAll'])
     router.post('raw-materials/seed', [controllers.RawMaterials, 'seed'])
     router.resource('raw-materials', controllers.RawMaterials).apiOnly()
   })

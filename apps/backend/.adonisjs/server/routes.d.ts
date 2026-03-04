@@ -13,6 +13,7 @@ export type ScannedRoutes = {
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'raw_materials.list_all': { paramsTuple?: []; params?: {} }
     'raw_materials.seed': { paramsTuple?: []; params?: {} }
     'raw_materials.index': { paramsTuple?: []; params?: {} }
     'raw_materials.store': { paramsTuple?: []; params?: {} }
@@ -23,12 +24,14 @@ export type ScannedRoutes = {
   GET: {
     'products.index': { paramsTuple?: []; params?: {} }
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'raw_materials.list_all': { paramsTuple?: []; params?: {} }
     'raw_materials.index': { paramsTuple?: []; params?: {} }
     'raw_materials.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'products.index': { paramsTuple?: []; params?: {} }
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'raw_materials.list_all': { paramsTuple?: []; params?: {} }
     'raw_materials.index': { paramsTuple?: []; params?: {} }
     'raw_materials.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
