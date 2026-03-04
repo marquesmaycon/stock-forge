@@ -13,6 +13,7 @@ export type ScannedRoutes = {
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'raw_materials.seed': { paramsTuple?: []; params?: {} }
     'raw_materials.index': { paramsTuple?: []; params?: {} }
     'raw_materials.store': { paramsTuple?: []; params?: {} }
     'raw_materials.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -36,6 +37,7 @@ export type ScannedRoutes = {
     'auth.access_token.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
     'products.store': { paramsTuple?: []; params?: {} }
+    'raw_materials.seed': { paramsTuple?: []; params?: {} }
     'raw_materials.store': { paramsTuple?: []; params?: {} }
   }
   PATCH: {

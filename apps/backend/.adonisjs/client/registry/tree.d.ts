@@ -20,6 +20,7 @@ export interface ApiDefinition {
     destroy: typeof routes['products.destroy']
   }
   rawMaterials: {
+    seed: typeof routes['raw_materials.seed']
     index: typeof routes['raw_materials.index']
     store: typeof routes['raw_materials.store']
     show: typeof routes['raw_materials.show']

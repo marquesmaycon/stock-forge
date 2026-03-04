@@ -28,6 +28,8 @@ router
 
     router.patch('products/:id/forge', [controllers.Products, 'forge'])
     router.resource('products', controllers.Products).apiOnly()
+
+    router.post('raw-materials/seed', [controllers.RawMaterials, 'seed'])
     router.resource('raw-materials', controllers.RawMaterials).apiOnly()
   })
   .prefix('/api/v1')

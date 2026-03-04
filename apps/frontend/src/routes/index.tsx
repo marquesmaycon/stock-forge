@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
+import { EmptyForge } from '#/components/empty-forge'
 import { PageTitle } from '#/components/page-title'
 import { Button } from '#/components/ui/button'
+import { Skeleton } from '#/components/ui/skeleton'
 import { ForgeCard } from '#/features/product/forge-card'
 import { api } from '#/lib/api'
 
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const { data: products } = useQuery(api.products.index.queryOptions())
+  const { data: products, isLoading } = useQuery(api.products.index.queryOptions())
 
   return (
     <main>
@@ -41,7 +43,17 @@ function App() {
       <section className="rise-in">
         <h2 className="page-title mb-12 w-full max-w-none text-center font-serif">Forge Products</h2>
 
+        {products?.length == 0 && <EmptyForge />}
+
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {isLoading && (
+            <>
+              <Skeleton className="bg-surface-strong rise-in h-96 rounded-2xl" />
+              <Skeleton className="bg-surface-strong rise-in h-96 rounded-2xl" />
+              <Skeleton className="bg-surface-strong rise-in h-96 rounded-2xl" />
+            </>
+          )}
+
           {products?.map((p, index) => (
             <ForgeCard key={p.id} product={p} animationDelay={index * 90 + 80} />
           ))}

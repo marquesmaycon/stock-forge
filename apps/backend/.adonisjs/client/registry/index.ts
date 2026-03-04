@@ -60,6 +60,12 @@ const routes = {
     tokens: [{"old":"/api/v1/products/:id","type":0,"val":"api","end":""},{"old":"/api/v1/products/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/products/:id","type":0,"val":"products","end":""},{"old":"/api/v1/products/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['products.destroy']['types'],
   },
+  'raw_materials.seed': {
+    methods: ["POST"],
+    pattern: '/api/v1/raw-materials/seed',
+    tokens: [{"old":"/api/v1/raw-materials/seed","type":0,"val":"api","end":""},{"old":"/api/v1/raw-materials/seed","type":0,"val":"v1","end":""},{"old":"/api/v1/raw-materials/seed","type":0,"val":"raw-materials","end":""},{"old":"/api/v1/raw-materials/seed","type":0,"val":"seed","end":""}],
+    types: placeholder as Registry['raw_materials.seed']['types'],
+  },
   'raw_materials.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/raw-materials',
