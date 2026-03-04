@@ -95,7 +95,18 @@ DB_PASSWORD=root
 DB_DATABASE=app
 ```
 
-4. **Rodar projeto**
+4. **Rodar migrations**
+```bash
+  # na pasta do backend
+  node ace migration:run
+```
+  - Você pode rodar o seed (na interface também haverá essa opção)
+```bash
+  # na pasta do backend
+  node ace db:seed
+```
+
+5. **Rodar projeto**
 
   -  backend + frontend
 ```bash
