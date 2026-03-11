@@ -12,7 +12,7 @@ export const Route = createFileRoute('/products/_/$id')({
 function RouteComponent() {
   const { id } = Route.useParams()
 
-  const { data: product, isLoading } = useQuery(api.products.show.queryOptions({ params: { id } }))
+  const { data: product } = useQuery(api.products.show.queryOptions({ params: { id } }))
 
   return (
     <main>

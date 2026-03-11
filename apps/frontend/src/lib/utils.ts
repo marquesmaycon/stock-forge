@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function calculateProduction(product: Route.Response<'products.index'>['data'][number]): number {
+export function calculateProduction(product: Route.Response<'products.index'>['products'][number]): number {
   const possibleAmounts = product.rawMaterials.map((rm) => {
     const available = parseFloat(rm.quantity)
     const needed = parseFloat(rm.quantity_needed)
@@ -16,4 +16,8 @@ export function calculateProduction(product: Route.Response<'products.index'>['d
   })
 
   return Math.floor(Math.min(...possibleAmounts))
+}
+
+export async function pause(ms = 600) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }

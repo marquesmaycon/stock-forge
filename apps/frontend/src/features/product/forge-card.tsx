@@ -41,7 +41,7 @@ export function ForgeCard({ product, animationDelay, refetching }: ForgeCardProp
     await forge({ body: { quantity }, params: { id: product.id } })
   }
 
-  const canProduce = production > 0
+  const canProduce = production > 0 || !refetching
 
   return (
     <Card className="bg-surface rise-in" style={{ animationDelay: `${animationDelay}ms` }}>
@@ -67,7 +67,7 @@ export function ForgeCard({ product, animationDelay, refetching }: ForgeCardProp
         <ul className="w-full space-y-2">
           {product.rawMaterials.map((rm) => (
             <li key={rm.id} className="flex flex-col">
-              <Item variant="outline" className={cn(refetching && 'animate-pulse')}>
+              <Item variant="outline" className={cn(!!refetching && 'animate-pulse')}>
                 <ItemHeader>
                   <ItemTitle className="text-sea-ink-soft">{rm.name}</ItemTitle>
                 </ItemHeader>
