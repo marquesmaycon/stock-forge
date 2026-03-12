@@ -1,7 +1,8 @@
 import { ProductSchema } from '#database/schema'
-import { manyToMany } from '@adonisjs/lucid/orm'
+import { hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import RawMaterial from './raw_material.ts'
-import type { ManyToMany } from '@adonisjs/lucid/types/relations'
+import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
+import Forge from './forge.ts'
 
 export default class Product extends ProductSchema {
   @manyToMany(() => RawMaterial, {
@@ -13,4 +14,7 @@ export default class Product extends ProductSchema {
     },
   })
   declare rawMaterials: ManyToMany<typeof RawMaterial>
+
+  @hasMany(() => Forge)
+  declare forges: HasMany<typeof Forge>
 }

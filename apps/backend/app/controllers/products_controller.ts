@@ -1,10 +1,13 @@
+import Forge from '#models/forge'
 import Product from '#models/product'
+import { ProductService } from '#services/product_service'
 import ProductTransformer from '#transformers/product_transformer'
 import { forgeValidator } from '#validators/forge'
 import { paginationValidator } from '#validators/pagination'
 import { productValidator } from '#validators/product'
 import type { HttpContext } from '@adonisjs/core/http'
 import db from '@adonisjs/lucid/services/db'
+import type { ModelAttributes } from '@adonisjs/lucid/types/model'
 import type { Infer } from '@vinejs/vine/types'
 
 export default class ProductsController {
@@ -100,19 +103,7 @@ export default class ProductsController {
         .firstOrFail()
 
       for (const material of product.rawMaterials) {
-        const currentQuantity = Number(material.quantity)
-
-        const neededPerUnit = Number(material.$extras?.pivot_quantity_needed ?? 0)
-
-        if (Number.isNaN(currentQuantity) || Number.isNaN(neededPerUnit)) {
-          throw new Error(`Invalid quantity data for raw material ${material.name}`)
-        }
-
-        const requiredQuantity = neededPerUnit * quantity
-
-        if (currentQuantity < requiredQuantity) {
-          throw new Error(`Insufficient quantity for raw material ${material.name}`)
-        }
+        ProductService.checkRawMaterialSufficiency(quantity, material)
       }
 
       await Promise.all(
@@ -123,6 +114,10 @@ export default class ProductsController {
           const newQuantity = currentQuantity - neededPerUnit * quantity
           await rm.merge({ quantity: newQuantity.toString() }).useTransaction(trx).save()
         })
+      )
+
+      await Forge.createMany(
+        Array.from({ length: quantity }).map(() => ({ productId: product.id }))
       )
 
       await trx.commit()

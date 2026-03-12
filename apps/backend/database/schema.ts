@@ -32,6 +32,19 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare expiresAt: DateTime | null
 }
 
+export class ForgeSchema extends BaseModel {
+  static $columns = ['id', 'productId', 'createdAt', 'updatedAt'] as const
+  $columns = ForgeSchema.$columns
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare productId: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class ProductRawMaterialSchema extends BaseModel {
   static $columns = ['id', 'productId', 'rawMaterialId', 'quantityNeeded', 'createdAt'] as const
   $columns = ProductRawMaterialSchema.$columns
