@@ -44,10 +44,10 @@ export interface Registry {
     methods: ["PATCH"]
     pattern: '/api/v1/products/:id/forge'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/forge').forgeValidator)>>
+      body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: ExtractQuery<InferInput<(typeof import('#validators/forge').forgeValidator)>>
+      query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['forge']>>>
     }
   }
@@ -181,6 +181,39 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['destroy']>>>
+    }
+  }
+  'forges.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/forges'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: ExtractQueryForGet<InferInput<(typeof import('#validators/pagination').paginationValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['index']>>>
+    }
+  }
+  'forges.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/forges'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/forge').forgeValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/forge').forgeValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['store']>>>
+    }
+  }
+  'forges.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/forges/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['destroy']>>>
     }
   }
 }

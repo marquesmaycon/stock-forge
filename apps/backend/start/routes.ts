@@ -32,5 +32,7 @@ router
     router.get('raw-materials/list-all', [controllers.RawMaterials, 'listAll'])
     router.post('raw-materials/seed', [controllers.RawMaterials, 'seed'])
     router.resource('raw-materials', controllers.RawMaterials).apiOnly()
+
+    router.resource('forges', controllers.Forges).apiOnly().except(['show', 'update'])
   })
   .prefix('/api/v1')

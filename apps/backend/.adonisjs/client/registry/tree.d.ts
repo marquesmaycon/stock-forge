@@ -28,4 +28,9 @@ export interface ApiDefinition {
     update: typeof routes['raw_materials.update']
     destroy: typeof routes['raw_materials.destroy']
   }
+  forges: {
+    index: typeof routes['forges.index']
+    store: typeof routes['forges.store']
+    destroy: typeof routes['forges.destroy']
+  }
 }

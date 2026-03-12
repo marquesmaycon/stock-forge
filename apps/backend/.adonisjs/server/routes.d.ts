@@ -20,6 +20,9 @@ export type ScannedRoutes = {
     'raw_materials.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'raw_materials.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'raw_materials.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forges.index': { paramsTuple?: []; params?: {} }
+    'forges.store': { paramsTuple?: []; params?: {} }
+    'forges.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'products.index': { paramsTuple?: []; params?: {} }
@@ -27,6 +30,7 @@ export type ScannedRoutes = {
     'raw_materials.list_all': { paramsTuple?: []; params?: {} }
     'raw_materials.index': { paramsTuple?: []; params?: {} }
     'raw_materials.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forges.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'products.index': { paramsTuple?: []; params?: {} }
@@ -34,6 +38,7 @@ export type ScannedRoutes = {
     'raw_materials.list_all': { paramsTuple?: []; params?: {} }
     'raw_materials.index': { paramsTuple?: []; params?: {} }
     'raw_materials.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forges.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
@@ -42,6 +47,7 @@ export type ScannedRoutes = {
     'products.store': { paramsTuple?: []; params?: {} }
     'raw_materials.seed': { paramsTuple?: []; params?: {} }
     'raw_materials.store': { paramsTuple?: []; params?: {} }
+    'forges.store': { paramsTuple?: []; params?: {} }
   }
   PATCH: {
     'products.forge': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -55,6 +61,7 @@ export type ScannedRoutes = {
   DELETE: {
     'products.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'raw_materials.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'forges.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

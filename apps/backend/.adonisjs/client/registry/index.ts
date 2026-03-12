@@ -102,6 +102,24 @@ const routes = {
     tokens: [{"old":"/api/v1/raw-materials/:id","type":0,"val":"api","end":""},{"old":"/api/v1/raw-materials/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/raw-materials/:id","type":0,"val":"raw-materials","end":""},{"old":"/api/v1/raw-materials/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['raw_materials.destroy']['types'],
   },
+  'forges.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/forges',
+    tokens: [{"old":"/api/v1/forges","type":0,"val":"api","end":""},{"old":"/api/v1/forges","type":0,"val":"v1","end":""},{"old":"/api/v1/forges","type":0,"val":"forges","end":""}],
+    types: placeholder as Registry['forges.index']['types'],
+  },
+  'forges.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/forges',
+    tokens: [{"old":"/api/v1/forges","type":0,"val":"api","end":""},{"old":"/api/v1/forges","type":0,"val":"v1","end":""},{"old":"/api/v1/forges","type":0,"val":"forges","end":""}],
+    types: placeholder as Registry['forges.store']['types'],
+  },
+  'forges.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/forges/:id',
+    tokens: [{"old":"/api/v1/forges/:id","type":0,"val":"api","end":""},{"old":"/api/v1/forges/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/forges/:id","type":0,"val":"forges","end":""},{"old":"/api/v1/forges/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['forges.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
