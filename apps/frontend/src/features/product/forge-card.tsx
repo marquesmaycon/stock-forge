@@ -25,7 +25,7 @@ export function ForgeCard({ product, animationDelay, refetching }: ForgeCardProp
   const production = calculateProduction(product)
 
   const { mutateAsync: forge, isPending } = useMutation({
-    ...api.products.forge.mutationOptions(),
+    ...api.forges.store.mutationOptions(),
     onSettled: (_, __, ___, ____, { client }) => {
       client.invalidateQueries(api.products.index.infiniteQueryOptions())
     },
@@ -38,7 +38,7 @@ export function ForgeCard({ product, animationDelay, refetching }: ForgeCardProp
   })
 
   async function handleForge() {
-    await forge({ body: { quantity }, params: { id: product.id } })
+    await forge({ body: { quantity, productId: product.id } })
   }
 
   const canProduce = production > 0 || !refetching

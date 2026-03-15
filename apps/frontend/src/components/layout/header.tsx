@@ -4,8 +4,8 @@ import ThemeToggle from '../ThemeToggle'
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-header-bg px-4 backdrop-blur-lg">
-      <nav className="container mx-auto flex  items-center gap-x-3 gap-y-2 py-3 sm:py-4 justify-between">
+    <header className="border-line bg-header-bg sticky top-0 z-50 border-b px-4 backdrop-blur-lg">
+      <nav className="container mx-auto flex items-center justify-between gap-x-3 gap-y-2 py-3 sm:py-4">
         {/* <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
           <Link
             to="/"
@@ -26,9 +26,12 @@ export function Header() {
           <Link to="/raw-materials" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
             Raw Materials
           </Link>
+          <Link to="/forges" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
+            Forges
+          </Link>
         </div>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:ml-0 sm:gap-2 shrink-0">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:ml-0 sm:gap-2">
           <ThemeToggle />
         </div>
       </nav>

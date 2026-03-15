@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RawMaterialsIndexRouteImport } from './routes/raw-materials/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as ForgesIndexRouteImport } from './routes/forges/index'
 import { Route as RawMaterialsNewRouteImport } from './routes/raw-materials/_.new'
 import { Route as RawMaterialsIdRouteImport } from './routes/raw-materials/_.$id'
 import { Route as ProductsNewRouteImport } from './routes/products/_.new'
@@ -30,6 +31,11 @@ const RawMaterialsIndexRoute = RawMaterialsIndexRouteImport.update({
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgesIndexRoute = ForgesIndexRouteImport.update({
+  id: '/forges/',
+  path: '/forges/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RawMaterialsNewRoute = RawMaterialsNewRouteImport.update({
@@ -55,6 +61,7 @@ const ProductsIdRoute = ProductsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forges/': typeof ForgesIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/raw-materials/': typeof RawMaterialsIndexRoute
   '/products/$id': typeof ProductsIdRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forges': typeof ForgesIndexRoute
   '/products': typeof ProductsIndexRoute
   '/raw-materials': typeof RawMaterialsIndexRoute
   '/products/$id': typeof ProductsIdRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/forges/': typeof ForgesIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/raw-materials/': typeof RawMaterialsIndexRoute
   '/products/_/$id': typeof ProductsIdRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/forges/'
     | '/products/'
     | '/raw-materials/'
     | '/products/$id'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/forges'
     | '/products'
     | '/raw-materials'
     | '/products/$id'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/forges/'
     | '/products/'
     | '/raw-materials/'
     | '/products/_/$id'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForgesIndexRoute: typeof ForgesIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   RawMaterialsIndexRoute: typeof RawMaterialsIndexRoute
   ProductsIdRoute: typeof ProductsIdRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/products'
       fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forges/': {
+      id: '/forges/'
+      path: '/forges'
+      fullPath: '/forges/'
+      preLoaderRoute: typeof ForgesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/raw-materials/_/new': {
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForgesIndexRoute: ForgesIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   RawMaterialsIndexRoute: RawMaterialsIndexRoute,
   ProductsIdRoute: ProductsIdRoute,
