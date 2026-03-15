@@ -9,7 +9,7 @@ export const Route = createFileRoute('/forges/')({
 
 function RouteComponent() {
   return (
-    <main>
+    <main className="flex flex-col">
       <PageTitle.Root>
         <PageTitle.Background first="from-palm/50" second="from-sea-ink-soft/25" />
         <PageTitle.Title title="Forges" description="All forged products" />
