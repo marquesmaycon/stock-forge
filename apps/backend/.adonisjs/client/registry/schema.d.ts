@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 /// <reference path="../manifest.d.ts" />
 
-import type { ExtractBody, ExtractQuery, ExtractQueryForGet, ExtractResponse } from '@tuyau/core/types'
-import type { InferInput } from '@vinejs/vine/types'
+import type { ExtractBody, ExtractErrorResponse, ExtractQuery, ExtractQueryForGet, ExtractResponse } from '@tuyau/core/types'
+import type { InferInput, SimpleError } from '@vinejs/vine/types'
 
 export type ParamValue = string | number | bigint | boolean
 
@@ -16,6 +16,7 @@ export interface Registry {
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/user').signupValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'auth.access_token.store': {
@@ -27,6 +28,7 @@ export interface Registry {
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/user').loginValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'auth.access_token.destroy': {
@@ -38,6 +40,7 @@ export interface Registry {
       params: {}
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['destroy']>>>
     }
   }
   'products.forge': {
@@ -49,6 +52,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['forge']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['forge']>>>
     }
   }
   'products.index': {
@@ -60,6 +64,7 @@ export interface Registry {
       params: {}
       query: ExtractQueryForGet<InferInput<(typeof import('#validators/pagination').paginationValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['index']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'products.store': {
@@ -71,6 +76,7 @@ export interface Registry {
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/product').productValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'products.show': {
@@ -82,6 +88,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['show']>>>
     }
   }
   'products.update': {
@@ -93,6 +100,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: ExtractQuery<InferInput<(typeof import('#validators/product').productValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'products.destroy': {
@@ -104,6 +112,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['destroy']>>>
     }
   }
   'raw_materials.list_all': {
@@ -115,6 +124,7 @@ export interface Registry {
       params: {}
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['listAll']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['listAll']>>>
     }
   }
   'raw_materials.seed': {
@@ -126,6 +136,7 @@ export interface Registry {
       params: {}
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['seed']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['seed']>>>
     }
   }
   'raw_materials.index': {
@@ -137,6 +148,7 @@ export interface Registry {
       params: {}
       query: ExtractQueryForGet<InferInput<(typeof import('#validators/pagination').paginationValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['index']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'raw_materials.store': {
@@ -148,6 +160,7 @@ export interface Registry {
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/raw_material').rawMaterialValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'raw_materials.show': {
@@ -159,6 +172,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['show']>>>
     }
   }
   'raw_materials.update': {
@@ -170,6 +184,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: ExtractQuery<InferInput<(typeof import('#validators/raw_material').rawMaterialValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'raw_materials.destroy': {
@@ -181,6 +196,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/raw_materials_controller').default['destroy']>>>
     }
   }
   'forges.index': {
@@ -192,6 +208,7 @@ export interface Registry {
       params: {}
       query: ExtractQueryForGet<InferInput<(typeof import('#validators/pagination').paginationValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['index']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'forges.store': {
@@ -203,6 +220,7 @@ export interface Registry {
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/forge').forgeValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'forges.destroy': {
@@ -214,6 +232,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/forges_controller').default['destroy']>>>
     }
   }
 }

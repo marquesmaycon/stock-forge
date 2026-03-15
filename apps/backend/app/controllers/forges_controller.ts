@@ -1,6 +1,7 @@
 import Forge from '#models/forge'
 import Product from '#models/product'
 import { ProductService } from '#services/product_service'
+import ForgeTransformer from '#transformers/forge_transformer'
 import ProductTransformer from '#transformers/product_transformer'
 import { forgeValidator } from '#validators/forge'
 import { paginationValidator } from '#validators/pagination'
@@ -12,13 +13,19 @@ export default class ForgesController {
    * Display a list of resource
    */
   async index({ request, response, serialize }: HttpContext) {
-    const { page = 1, limit = 1 } = await request.validateUsing(paginationValidator)
+    const { page = 1, limit = 5 } = await request.validateUsing(paginationValidator)
 
-    const forges = await Forge.query().preload('product').paginate(page, limit)
+    const forges = await Forge.query()
+      .orderBy('createdAt', 'desc')
+      .preload('product')
+      .paginate(page, limit)
+
+    const { data } = await serialize(ForgeTransformer.transform(forges.all()))
 
     return response.ok({
-      forges: forges,
+      data,
       meta: {
+        total: forges.total,
         nextPage: forges.hasMorePages ? forges.currentPage + 1 : null,
       },
     })

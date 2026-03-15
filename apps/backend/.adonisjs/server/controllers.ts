@@ -5,8 +5,8 @@
 
 export const controllers = {
   AccessToken: () => import('#controllers/access_token_controller'),
+  Forges: () => import('#controllers/forges_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Products: () => import('#controllers/products_controller'),
   RawMaterials: () => import('#controllers/raw_materials_controller'),
-  Forges: () => import('#controllers/forges_controller'),
 }
