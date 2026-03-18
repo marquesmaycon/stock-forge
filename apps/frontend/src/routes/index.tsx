@@ -7,7 +7,7 @@ import { EmptyForge } from '#/components/empty-forge'
 import { PageTitle } from '#/components/page-title'
 import { Button } from '#/components/ui/button'
 import { Skeleton } from '#/components/ui/skeleton'
-import { ForgeCard } from '#/features/product/forge-card'
+import { ForgeCard } from '#/features/forge/forge-card'
 import { api } from '#/lib/api'
 import { cn } from '#/lib/utils'
 

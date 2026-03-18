@@ -30,7 +30,7 @@ export function ForgeCard({ product, animationDelay, refetching }: ForgeCardProp
       client.invalidateQueries(api.products.index.infiniteQueryOptions())
     },
     onSuccess: () => {
-      toast.success('Item forged!')
+      toast.success('Product forged!')
     },
     onError: (err) => {
       toast.error(err.response.message)

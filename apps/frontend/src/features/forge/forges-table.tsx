@@ -1,4 +1,4 @@
-import { keepPreviousData, useSuspenseQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery, useSuspenseQuery } from '@tanstack/react-query'
 import { useReactTable } from '@tanstack/react-table'
 import type { ColumnFiltersState, PaginationState, SortingState } from '@tanstack/table-core'
 import { createColumnHelper, getCoreRowModel, getFilteredRowModel, getSortedRowModel } from '@tanstack/table-core'
@@ -24,7 +24,10 @@ export function ForgesTable() {
   const limit = pagination.pageSize
 
   const { data: forges, isFetching } = useSuspenseQuery(
-    api.forges.index.queryOptions({ query: { limit, page } }, { placeholderData: keepPreviousData }),
+    api.forges.index.queryOptions(
+      { query: { limit, page } },
+      { placeholderData: keepPreviousData, refetchOnMount: false },
+    ),
   )
 
   const table = useReactTable({
