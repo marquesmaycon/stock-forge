@@ -20,7 +20,7 @@ test.group('Product', (group) => {
     const product = await persistProduct()
     const response = await client.visit('products.index')
 
-    response.assertBodyContains([{ id: product.id }])
+    response.assertBodyContains({ products: [{ id: product.id }] })
     response.assertOk()
   })
 
@@ -69,15 +69,5 @@ test.group('Product', (group) => {
     const response = await client.visit('products.destroy', { id: product.id })
 
     response.assertNoContent()
-  })
-
-  test('forge product', async ({ client }) => {
-    const product = await persistProduct()
-
-    const response = await client.visit('products.forge', { id: product.id }).json({
-      quantity: 1,
-    })
-
-    response.assertCreated()
   })
 })

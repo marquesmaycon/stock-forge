@@ -13,7 +13,7 @@ test.group('Raw material', (group) => {
     const rawMaterial = await persistRawMaterial()
     const response = await client.visit('raw_materials.index')
 
-    response.assertBodyContains([{ id: rawMaterial.id }])
+    response.assertBodyContains({ rawMaterials: [{ id: rawMaterial.id }] })
     response.assertOk()
   })
 
