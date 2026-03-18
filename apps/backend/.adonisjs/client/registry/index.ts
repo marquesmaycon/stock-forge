@@ -24,12 +24,6 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/logout","type":0,"val":"api","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['auth.access_token.destroy']['types'],
   },
-  'products.forge': {
-    methods: ["PATCH"],
-    pattern: '/api/v1/products/:id/forge',
-    tokens: [{"old":"/api/v1/products/:id/forge","type":0,"val":"api","end":""},{"old":"/api/v1/products/:id/forge","type":0,"val":"v1","end":""},{"old":"/api/v1/products/:id/forge","type":0,"val":"products","end":""},{"old":"/api/v1/products/:id/forge","type":1,"val":"id","end":""},{"old":"/api/v1/products/:id/forge","type":0,"val":"forge","end":""}],
-    types: placeholder as Registry['products.forge']['types'],
-  },
   'products.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/products',

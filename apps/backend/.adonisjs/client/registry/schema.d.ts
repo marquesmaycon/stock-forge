@@ -43,18 +43,6 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_token_controller').default['destroy']>>>
     }
   }
-  'products.forge': {
-    methods: ["PATCH"]
-    pattern: '/api/v1/products/:id/forge'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/products_controller').default['forge']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/products_controller').default['forge']>>>
-    }
-  }
   'products.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/products'

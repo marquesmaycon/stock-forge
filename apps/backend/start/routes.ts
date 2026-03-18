@@ -26,7 +26,6 @@ router
       .prefix('auth')
       .as('auth')
 
-    router.patch('products/:id/forge', [controllers.Products, 'forge'])
     router.resource('products', controllers.Products).apiOnly()
 
     router.get('raw-materials/list-all', [controllers.RawMaterials, 'listAll'])

@@ -7,7 +7,6 @@ export type ScannedRoutes = {
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
-    'products.forge': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.index': { paramsTuple?: []; params?: {} }
     'products.store': { paramsTuple?: []; params?: {} }
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -49,12 +48,11 @@ export type ScannedRoutes = {
     'raw_materials.store': { paramsTuple?: []; params?: {} }
     'forges.store': { paramsTuple?: []; params?: {} }
   }
-  PATCH: {
-    'products.forge': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  PUT: {
     'products.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'raw_materials.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
-  PUT: {
+  PATCH: {
     'products.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'raw_materials.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
