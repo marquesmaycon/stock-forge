@@ -1,166 +1,123 @@
-# ⚙️ Stock Forge
+# Stock Forge
 
-## Uma plataforma full‑stack para gerenciamento de produtos e matérias‑primas.
+Plataforma full-stack para gerenciamento de estoque, produtos e matérias-primas, construída em monorepo com AdonisJS, TanStack Start, React, TypeScript e Turborepo.
 
-## 🌐 Demo Online
-> A API entra em hibernação quando sem acessos. Pode demorar 1 ou 2 minutos para que ela esteja disponível novamente após hibernar.
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![AdonisJS](https://img.shields.io/badge/AdonisJS-7-5A45FF)](https://adonisjs.com/)
+[![TanStack](https://img.shields.io/badge/TanStack-Start-FF4154)](https://tanstack.com/start)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql)](https://www.postgresql.org/)
+[![Turborepo](https://img.shields.io/badge/Turborepo-2.8-EF4444?logo=turborepo)](https://turbo.build/repo)
 
-**[👉 VER PROJETO AO VIVO](https://stock-forge.mklly.com.br/)**
+## Demo
 
-## 🧱 Stack
+Projeto ao vivo: [stock-forge.mklly.com.br](https://stock-forge.mklly.com.br/)
 
-- **Backend:** AdonisJS 7 (TypeScript)
-- **Frontend:** TanStack Start (Vite)
-- **API:** RESTful
-- **Banco de dados:** PostgreSQL (Neon)
-- **ORM / Query builder:** Adonis Lucid
-- **Linter / Formatter:** ESLint, Prettier
-- **Monorepo:** TurboRepo
+> A API pode entrar em hibernação quando fica sem acessos. O primeiro carregamento pode levar alguns segundos.
 
----
+## Sobre
 
-## 📦 Estrutura do monorepo
+O Stock Forge é uma aplicação de inventário para controlar produtos, matérias-primas e composições de fabricação. O projeto foi estruturado como monorepo para integrar backend, frontend e contrato de API de forma organizada.
 
+A aplicação explora um fluxo full-stack real, com autenticação, CRUDs, validações, tabelas, formulários e comunicação tipada entre cliente e servidor.
+
+## Funcionalidades
+
+- Cadastro e autenticação de usuários.
+- Gestão de produtos.
+- Gestão de matérias-primas.
+- Associação entre produtos e matérias-primas.
+- Cálculo e organização de composições de estoque.
+- Listagens em tabela com ações de edição e remoção.
+- Formulários com validação.
+- API REST com transformers, services e validators.
+- Testes funcionais para recursos principais.
+
+## Stack
+
+- **AdonisJS 7** para o backend.
+- **Lucid ORM** para banco de dados.
+- **PostgreSQL** como banco relacional.
+- **TanStack Start** e **React 19** no frontend.
+- **TanStack Router**, **TanStack Query**, **TanStack Table** e **TanStack Form**.
+- **Tuyau** para integração tipada com a API.
+- **Radix UI**, **Tailwind CSS** e componentes reutilizáveis.
+- **Japa** para testes no backend.
+- **Turborepo** para orquestração do monorepo.
+
+## Arquitetura
+
+```txt
+.
+├── apps/
+│   ├── backend/       # API AdonisJS
+│   └── frontend/      # Aplicação TanStack Start
+├── packages/
+│   └── api-contract/  # Contrato compartilhado da API
+└── turbo.json
 ```
-/apps
-  /backend   # servidor AdonisJS
-  /frontend  # cliente React
-```
 
----
+## Como executar
 
-## 🛠️ Como rodar localmente
+### Pré-requisitos
 
+- Node.js 24 ou superior.
+- npm.
+- PostgreSQL.
 
-1. **Clone o repositório**
-
-  - **Pré‑requisitos**
-    - Node.js 18+ (recomenda‑se gerenciador de versões como nvm)
-    - PostgreSQL ou Neon (pode usar a URL já configurada)
-    - Yarn ou npm
+### Instalação
 
 ```bash
-# no terminal
 git clone https://github.com/marquesmaycon/stock-forge.git
-```
-
-2. **Instalar dependências**
-
-```bash
 cd stock-forge
-# na raiz do monorepo
 npm install
-# ou
-# yarn install
 ```
 
-3. **Configurar variáveis de ambiente do backend**
+Configure o backend usando `apps/backend/.env.example` como referência:
 
-Copie os arquivos `.env.example` de cada app (se existirem) e preencha conforme necessário. O backend tem as seguintes chaves importantes:
-
-> Confira `apps/backend/.env.example` para referência.
-
-  - Você vai precisar de uma chave aletória de 16 digitos e pode gerar com o comando abaixo.
-
-```bash
-  cd apps/backend
-  # na pasta do backend
-  node ace generate:key
-```
-  - Seu aquivo ``.env`` vai se parecer com isso
-
-```dotenv
-# apps/backend/.env
-TZ=UTC
+```env
 PORT=3333
 HOST=localhost
-NODE_ENV=development
-
-LOG_LEVEL=info
-APP_KEY=<chave aleatória com 16 caracteres>
-APP_URL=http://${HOST}:${PORT}
-
-SESSION_DRIVER=cookie
-
-# CORS
-# CORS_ORIGIN=http://localhost:5173,http://localhost:3000
-
-DATABASE_URL=postgresql://user:password@host/dbname?sslmode=require&channel_binding=require
-```
-> Alternativamente você pode definir variáveis de ambiente para o banco de forma convencional
-
-```dotenv
-# apps/backend/.env
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_USER=root
-DB_PASSWORD=root
-DB_DATABASE=app
+APP_KEY=
+DATABASE_URL=
+CORS_ORIGIN=http://localhost:3000
 ```
 
-4. **Rodar migrations**
-```bash
-  # na pasta do backend ``apps/backend``
-  node ace migration:run
-```
-  - Você pode rodar o seed (na interface também haverá essa opção)
-```bash
-  # na pasta do backend ``apps/backend``
-  node ace db:seed
-```
-
-5. **Rodar projeto**
-
-  -  backend + frontend
-```bash
-# na raiz do projeto
-npm run dev
-# ou
-# yarn dev
-```
-  - - **Rodar apenas backend**
+Gere a chave da aplicação:
 
 ```bash
 cd apps/backend
-# iniciar servidor adonis
-npm run dev
+node ace generate:key
 ```
 
-  - - **Rodar frontend**
+Volte para a raiz e inicie o monorepo:
 
 ```bash
-cd apps/frontend
-# iniciar TanStack Start
+cd ../..
 npm run dev
-# ou
-# yarn dev
 ```
 
-O cliente ficará disponível em `http://localhost:3000` por padrão.
+## Scripts disponíveis
 
-## 🚀 Desenvolvimento Back-End
-> Na pasta do backend `apps/backend` voce pode rodar
-- Para aplicar migrations:
-  ```bash
-  node ace migration:run
-  ```
+```bash
+npm run dev        # Inicia backend e frontend
+npm run build      # Gera build dos workspaces
+npm run test       # Executa testes
+npm run lint       # Executa lint
+npm run format     # Formata os projetos
+npm run typecheck  # Valida TypeScript
+```
 
-- Limpa banco e roda migrations novamente:
-  ```bash
-  node ace migration:fresh
-  ```
+## Destaques técnicos
 
-- Popula o banco de dados (seed):
-  ```bash
-  node ace db:seed
-  ```
+- Monorepo com frontend, backend e pacote de contrato.
+- Backend organizado com controllers, services, validators e transformers.
+- Integração type-safe entre API e frontend.
+- Uso extensivo do ecossistema TanStack.
+- Testes funcionais no backend.
+- Modelagem de domínio voltada para estoque e composição de produtos.
 
-- Roda os testes:
-  ```bash
-  node ace test
-  ```
-
-## 👨‍💻 Autor
+---
 
 <div align="center">
   <img src="https://github.com/marquesmaycon.png" width="100px" style="border-radius: 50%"/>
@@ -168,10 +125,8 @@ O cliente ficará disponível em `http://localhost:3000` por padrão.
   <strong>Maycon Marques</strong>
   <br/>
   <br/>
-  
+
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayconhenrique/)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/marquesmaycon)
   [![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:mayconmarquesh@gmail.com)
-
-  ### Feito com ❤️ e muita 🎵
 </div>
